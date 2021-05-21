@@ -1,12 +1,17 @@
 import {StyleSheet} from "react-native";
 
-const style = StyleSheet.create({
+const styleCardsContainer = StyleSheet.create({
     container: {
-      flex: 1,
-      backgroundColor: '#fff',
-      alignItems: 'center',
-      justifyContent: 'center',
-    },
+      fontFamily: Optima, serif,
+      margin: 10,
+      display: flex,
+      justifyContent: spaceBetween,
+    }
   });
 
-  export {style}
+const styleCards = StyleSheet.create({
+    container: {
+      
+    }
+  });
+  export {styleCardsContainer, styleCards}
