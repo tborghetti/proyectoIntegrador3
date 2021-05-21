@@ -1,17 +1,52 @@
 import {StyleSheet} from "react-native";
 
-const styleCardsContainer = StyleSheet.create({
+const style = StyleSheet.create({
     container: {
-      fontFamily: Optima, serif,
+      flex: 1,
+      backgroundColor: '#fff',
+      alignItems: 'center',
+      justifyContent: 'center',
+    },
+  });
+  
+  const styleHeader = StyleSheet.create({
+    title: {
+      
+    },
+  });
+
+  const styleCardsContainer = StyleSheet.create({
+    container:{
       margin: 10,
-      display: flex,
-      justifyContent: spaceBetween,
+      flex: 1,
+      justifyContent: "space-between",
+    },
+    add: {
+      width: 75,
+      borderWidth: 2, 
+      borderStyle: 'solid', 
+      borderRadius: 5, 
+      borderColor: '#f4a40c', 
+      color: '#f4a40c',
+      backgroundColor: 'none',
+      textAlign: 'center',
+    },
+    filter:{
+      width: 75,
+      borderWidth: 2,
+      borderStyle: 'solid',
+      borderRadius: 5, 
+      borderColor: '#f4a40c', 
+      color: '#f4a40c',
+      backgroundColor: 'none',
+      textAlign: 'center',
     }
   });
 
-const styleCards = StyleSheet.create({
-    container: {
+  const styleCards = StyleSheet.create({
+    container:{
       
     }
   });
-  export {styleCardsContainer, styleCards}
+
+  export {style, styleHeader, styleCardsContainer, styleCards}
