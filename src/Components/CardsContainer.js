@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Card from './Card';
 import { TextInput, Touchable,
     View
 } from 'react-native';

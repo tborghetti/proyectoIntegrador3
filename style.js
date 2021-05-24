@@ -1,6 +1,6 @@
 import {StyleSheet} from "react-native";
 
-const style = StyleSheet.create({
+const styleApp = StyleSheet.create({
     container: {
       flex: 1,
       backgroundColor: '#fff',
@@ -43,10 +43,43 @@ const style = StyleSheet.create({
     }
   });
 
-  const styleCards = StyleSheet.create({
-    container:{
-      
+  const styleViewImportCards = StyleSheet.create({
+    ViewCard:{
+     width: 27,
+     textAlign: "center",
+     marginBottom: 3,
+     marginLeft: 2,
+     borderBottomWidth: 5,
+     borderLeftWidth: 1,
+     borderRightWidth: 1,
+     borderTopWidth: 1,
+     borderColor: '#C0FF38',
+     borderStyle: 'solid',
+     borderRadius: 12,
+     backgroundColor: '#363636',
+     padding: 1,
+     color: 'rgb(207,116,37)'
+    },
+    NameLastName: {
+      color: '#ff7100',
+      fontFamily: 'sans-serif',
+    },
+    Mail:{
+      color: '#fcb554'
+    },
+    Birthday:{
+      color: 'whitesmoke'
     }
   });
 
-  export {style, styleHeader, styleCardsContainer, styleCards}
+  const styleImportCards = StyleSheet.create({
+    container:{
+      flex: 1,
+      flexDirection: "column",
+      justifyContent: "space-evenly",
+      alignItems: "center",
+
+    }
+  });
+
+  export {styleApp, styleHeader, styleCardsContainer, styleViewImportCards, styleImportCards}

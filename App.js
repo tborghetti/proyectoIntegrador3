@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import CardsContainer from './src/Components/CardsContainer';
-import {style} from "./style";
+import {styleApp} from "./style";
 import { 
   Text, 
   View 
@@ -16,7 +16,7 @@ export default class App extends Component {
   
   render(){
     return (
-      <View style={style.container}>
+      <View style={styleApp.container}>
         <Text>Hola Tiziana, la vamos a romper toda! :)</Text> 
       </View>
     );
