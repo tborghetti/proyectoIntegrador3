@@ -3,7 +3,7 @@ import {StyleSheet} from "react-native";
 const styleApp = StyleSheet.create({
     container: {
       flex: 1,
-      backgroundColor: '#fff',
+      backgroundColor: 'white',
       alignItems: 'center',
       justifyContent: 'center',
     },
@@ -43,9 +43,10 @@ const styleApp = StyleSheet.create({
     }
   });
 
-  const styleViewImportCards = StyleSheet.create({
+  const styleCards = StyleSheet.create({
     ViewCard:{
-     width: 27,
+     width: 200,
+     height: 600,
      textAlign: "center",
      marginBottom: 3,
      marginLeft: 2,
@@ -82,4 +83,4 @@ const styleApp = StyleSheet.create({
     }
   });
 
-  export {styleApp, styleHeader, styleCardsContainer, styleViewImportCards, styleImportCards}
+  export {styleApp, styleHeader, styleCardsContainer, styleCards, styleImportCards}

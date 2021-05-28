@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
-import CardsContainer from './src/Components/CardsContainer';
 import {styleApp} from "./style";
 import { 
   Text, 
   View 
 } from 'react-native';
+import Screen_ImportCards from './src/Screen/Screen_ImportCards';
 
 export default class App extends Component {
   constructor(){
@@ -17,7 +17,7 @@ export default class App extends Component {
   render(){
     return (
       <View style={styleApp.container}>
-        <Text>Hola Tiziana, la vamos a romper toda! :)</Text> 
+      <Screen_ImportCards />
       </View>
     );
   }
