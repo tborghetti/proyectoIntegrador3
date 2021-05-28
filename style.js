@@ -46,7 +46,7 @@ const styleApp = StyleSheet.create({
   const styleCards = StyleSheet.create({
     ViewCard:{
      width: 200,
-     height: 600,
+     height: 100,
      textAlign: "center",
      marginBottom: 3,
      marginLeft: 2,
