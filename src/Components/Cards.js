@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {styleCards} from '../../style';
+// import MoreDetails from './MoreDetails'
 import {
     Text, 
     View,
+    Image
 } from 'react-native';
 
 export default class Cards extends Component {
@@ -26,9 +28,10 @@ export default class Cards extends Component {
     render() {
         return (
             <View style={styleCards.ViewCard}>
+                    {/* <Image style={{height:100, width:100}} source={{uri:this.props.DataShown.picture.small}}></Image> */}
                     <Text style={styleCards.NameLastName}> {this.props.DataShown.name.last}, {this.props.DataShown.name.first} </Text>
                     <Text style={styleCards.Mail}>{this.props.DataShown.email}</Text>
-                    <Text style={styleCards.Birthday}> {this.state.beautifulDate} - ({this.props.DataShown.dob.age})</Text> 
+                    <Text style={styleCards.Birthday}> {this.state.beautifulDate} - ({this.props.DataShown.dob.age})</Text>      
             </View>
         )
     }

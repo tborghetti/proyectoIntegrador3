@@ -3,9 +3,9 @@ import {StyleSheet} from "react-native";
 const styleApp = StyleSheet.create({
     container: {
       flex: 1,
-      backgroundColor: 'white',
+      backgroundColor: '#363636',
       alignItems: 'center',
-      justifyContent: 'center',
+      justifyContent: 'center'
     },
   });
   
@@ -19,7 +19,7 @@ const styleApp = StyleSheet.create({
     container:{
       margin: 10,
       flex: 1,
-      justifyContent: "space-between",
+      justifyContent: "space-between"
     },
     add: {
       width: 75,
@@ -28,7 +28,6 @@ const styleApp = StyleSheet.create({
       borderRadius: 5, 
       borderColor: '#f4a40c', 
       color: '#f4a40c',
-      backgroundColor: 'none',
       textAlign: 'center',
     },
     filter:{
@@ -38,16 +37,16 @@ const styleApp = StyleSheet.create({
       borderRadius: 5, 
       borderColor: '#f4a40c', 
       color: '#f4a40c',
-      backgroundColor: 'none',
       textAlign: 'center',
     }
   });
 
   const styleCards = StyleSheet.create({
     ViewCard:{
-     width: 200,
+     width: 300,
      height: 100,
      textAlign: "center",
+     marginTop:15,
      marginBottom: 3,
      marginLeft: 2,
      borderBottomWidth: 5,
@@ -63,7 +62,7 @@ const styleApp = StyleSheet.create({
     },
     NameLastName: {
       color: '#ff7100',
-      fontFamily: 'sans-serif',
+      // fontFamily: 'sans-serif',
     },
     Mail:{
       color: '#fcb554'

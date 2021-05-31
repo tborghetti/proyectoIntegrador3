@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Cards from '../Components/Cards';
 import {styleImportCards} from '../../style';
+// import MoreDetails from '../Components/MoreDetails'
 import {
     Text, 
     TouchableOpacity, 
