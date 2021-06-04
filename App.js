@@ -5,6 +5,7 @@ import {
   View 
 } from 'react-native';
 import Screen_ImportCards from './src/Screen/Screen_ImportCards';
+import Screen_FlatList from './src/Screen/Screen_FlatList'
 
 export default class App extends Component {
   constructor(){

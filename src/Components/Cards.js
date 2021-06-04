@@ -29,12 +29,12 @@ export default class Cards extends Component {
     render() {
         return (
             <View style={styleCards.ViewCard}>
-                    <Image style={{height:100, width:100}} source={{uri:this.props.DataShown.picture.medium}}/>
+                    <Image style={{height:100, width:100, borderRadius:50, alignSelf:'center'}} source={{uri:this.props.DataShown.picture.medium}}/>
                     <Text style={styleCards.NameLastName}> {this.props.DataShown.name.last}, {this.props.DataShown.name.first} </Text>
                     <Text style={styleCards.Mail}>{this.props.DataShown.email}</Text>
                     <Text style={styleCards.Birthday}> {this.state.beautifulDate} - ({this.props.DataShown.dob.age})</Text> 
-                    <TouchableOpacity style = {{backgroundColor: "blue", width: 70, alignSelf: "center"}}><Text>More Info</Text></TouchableOpacity> 
-                    <TouchableOpacity style = {{backgroundColor: "pink", width: 50, alignSelf: "center"}}><Text>Select</Text></TouchableOpacity>    
+                    <TouchableOpacity style = {{backgroundColor: "blue", width: 100, alignSelf: "center", borderRadius:10, padding:2}}><Text>More Info</Text></TouchableOpacity> 
+                    <TouchableOpacity style = {{backgroundColor: "pink", width: 100, alignSelf: "center", borderRadius:10, padding: 2}}><Text>Select</Text></TouchableOpacity>    
             </View>
         )
     }

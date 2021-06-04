@@ -43,10 +43,10 @@ const styleApp = StyleSheet.create({
 
   const styleCards = StyleSheet.create({
     ViewCard:{
-     width: 200,
+     width: 300,
      height: 200,
      textAlign: "center",
-     marginTop:15,
+     marginTop:100,
      marginBottom: 3,
      marginLeft: 2,
      borderBottomWidth: 5,
@@ -58,7 +58,8 @@ const styleApp = StyleSheet.create({
      borderRadius: 12,
      backgroundColor: '#363636',
      padding: 1,
-     color: 'rgb(207,116,37)'
+     color: 'rgb(207,116,37)',
+     alignItems:'center'
     },
     NameLastName: {
       color: '#ff7100',
