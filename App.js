@@ -5,6 +5,7 @@ import {
   View 
 } from 'react-native';
 import Screen_ImportCards from './src/Screen/Screen_ImportCards';
+import Screen_ViewImportCards from './src/Screen/Screen_ViewImportCards';
 import Screen_FlatList from './src/Screen/Screen_FlatList'
 
 export default class App extends Component {
@@ -18,7 +19,7 @@ export default class App extends Component {
   render(){
     return (
       <View style={styleApp.container}>
-      <Screen_ImportCards />
+      <Screen_ViewImportCards/>
       </View>
     );
   }

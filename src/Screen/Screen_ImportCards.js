@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Cards from '../Components/Cards';
-import MoreDetails from '../Components/MoreDetails';
 import {styleImportCards} from '../../style';
-// import MoreDetails from '../Components/MoreDetails'
 import {
     Text, 
     TouchableOpacity, 
@@ -19,16 +17,17 @@ export default class Screen_ImportCards extends Component {
     }
 
     componentDidMount(){
-        fetch('https://randomuser.me/api/?results=5')
+        fetch('https://randomuser.me/api/?results=2')
         .then((result) => result.json())
         .then((data) => { 
           this.setState({infoCards: data.results})
         })
       }
-      async storeData(){
+    
+    async storeData(){
         try {
             const jsonCards = JSON.stringify(this.state.infoCards);	
-            await AsyncStorage.setItem('Cards', jsonCards);
+            await AsyncStorage.setItem("Cards", jsonCards);
             console.log("Datos almacenados");
         }catch(e){
             console.log(e)
@@ -41,9 +40,7 @@ export default class Screen_ImportCards extends Component {
                 <Text>ImportCards</Text>
                 {this.state.infoCards.map( (oneCard, idx) => {
                         return (
-                            
                             <Cards DataShown={oneCard} key={idx} id={oneCard.id} originaldate={oneCard.dob.date} />
-                           
                         )
                         })
                 }

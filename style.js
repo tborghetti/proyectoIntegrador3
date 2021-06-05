@@ -17,9 +17,9 @@ const styleApp = StyleSheet.create({
 
   const styleCardsContainer = StyleSheet.create({
     container:{
-      margin: 10,
+      margin: 5,
       flex: 1,
-      justifyContent: "space-between"
+      justifyContent: "space-between",
     },
     add: {
       width: 75,
