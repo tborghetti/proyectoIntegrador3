@@ -43,10 +43,10 @@ export default class Cards extends Component {
                     <Text style={styleCards.NameLastName}> {this.props.DataShown.name.last}, {this.props.DataShown.name.first} </Text>
                     <Text style={styleCards.Mail}>{this.props.DataShown.email}</Text>
                     <Text style={styleCards.Birthday}> {this.state.beautifulDate} - ({this.props.DataShown.dob.age})</Text> 
-                    <TouchableOpacity style = {{backgroundColor: "blue", width: 100, alignSelf: "center", borderRadius:10, padding:2}}><Text>More Info</Text></TouchableOpacity> 
+                    <TouchableOpacity style = {{backgroundColor: "blue", width: 100, alignSelf: "center", borderRadius:10, padding:2, marginTop:50}}><Text>More Info</Text></TouchableOpacity> 
                     <TouchableOpacity 
                     onPress= {this.selectedCardStorage.bind(this)}
-                    style = {{backgroundColor: "pink", width: 100, alignSelf: "center", borderRadius:10, padding: 2}}><Text>Select</Text></TouchableOpacity>    
+                    style = {{backgroundColor: "pink", width: 100, alignSelf: "center", borderRadius:10, padding: 2,marginTop:20}}><Text>Select</Text></TouchableOpacity>    
             </View>
         )
     }

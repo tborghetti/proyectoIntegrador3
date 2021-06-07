@@ -10,16 +10,27 @@ const styleApp = StyleSheet.create({
   });
   
   const styleHeader = StyleSheet.create({
+    container:{
+      width:'100%',
+      padding:50,
+      marginTop:0,
+      backgroundColor:'grey',
+      justifyContent:'center',
+      alignItems:'center',
+      marginBottom:10
+    },
     title: {
-      
+      color:'white',
+      fontWeight:'bold',
+      fontSize:40
     },
   });
 
   const styleCardsContainer = StyleSheet.create({
     container:{
-      margin: 5,
+      margin: 10,
       flex: 1,
-      justifyContent: "space-between",
+      justifyContent: "space-between"
     },
     add: {
       width: 75,
@@ -43,12 +54,12 @@ const styleApp = StyleSheet.create({
 
   const styleCards = StyleSheet.create({
     ViewCard:{
-     width: 300,
-     height: 200,
+     width: 200,
+     height: 300,
      textAlign: "center",
-     marginTop:100,
+     marginTop:10,
      marginBottom: 3,
-     marginLeft: 2,
+     marginLeft: 5,
      borderBottomWidth: 5,
      borderLeftWidth: 1,
      borderRightWidth: 1,
@@ -79,8 +90,21 @@ const styleApp = StyleSheet.create({
       flexDirection: "column",
       justifyContent: "space-evenly",
       alignItems: "center",
-
     }
   });
 
-  export {styleApp, styleHeader, styleCardsContainer, styleCards, styleImportCards}
+  const styleFlatList = StyleSheet.create({
+    container:{
+      flex:1,
+      justifyContent:'center',
+      alignItems:'center',
+      width:'100%'
+    },
+    card:{
+      width:100
+      
+    }
+  })
+
+
+  export {styleApp, styleHeader, styleCardsContainer, styleCards, styleImportCards, styleFlatList}

@@ -3,6 +3,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import Cards from '../Components/Cards';
 import {styleImportCards} from '../../style';
 import {
+    Alert,
     Text, 
     TouchableOpacity, 
     View,
@@ -17,7 +18,7 @@ export default class Screen_ImportCards extends Component {
     }
 
     componentDidMount(){
-        fetch('https://randomuser.me/api/?results=2')
+        fetch('https://randomuser.me/api/?results=5')
         .then((result) => result.json())
         .then((data) => { 
           this.setState({infoCards: data.results})
@@ -29,6 +30,7 @@ export default class Screen_ImportCards extends Component {
             const jsonCards = JSON.stringify(this.state.infoCards);	
             await AsyncStorage.setItem("Cards", jsonCards);
             console.log("Datos almacenados");
+            Alert.alert("Datos almacenados correctamente");
         }catch(e){
             console.log(e)
         }

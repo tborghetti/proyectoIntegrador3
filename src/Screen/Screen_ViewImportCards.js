@@ -18,9 +18,9 @@ export default class Screen_ViewImportCards extends Component {
 
   async getData() {
     try {
-      const cardsBrought = await AsyncStorage.getItem('Selected');
+      const cardsBrought = await AsyncStorage.getItem('Cards');
       this.setState({ importedCards: JSON.parse(cardsBrought) });
-      console.log(cardsBrought)
+      return cardsBrought;
     } catch (e) {
       console.log(e)
     }
@@ -43,7 +43,7 @@ export default class Screen_ViewImportCards extends Component {
         </TouchableOpacity>
         <TouchableOpacity style={{ backgroundColor: 'red' }} onPress={() => this.setState({ importedCards: [] })}>
           <View>
-            <Text>Borrar datos importados</Text>
+            <Text>Ocultar datos importados</Text>
           </View>
         </TouchableOpacity>
       </View>
