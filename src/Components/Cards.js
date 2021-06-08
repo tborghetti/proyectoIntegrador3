@@ -6,8 +6,12 @@ import {
     Text, 
     View,
     Image,
-    TouchableOpacity
+    TouchableOpacity,
+    Button
 } from 'react-native';
+import Icon from 'react-native-vector-icons/FontAwesome';
+import { AntDesign } from '@expo/vector-icons'; 
+
 
 export default class Cards extends Component {
     constructor(props) {
@@ -25,12 +29,12 @@ export default class Cards extends Component {
         let beautifulDate = day + '/' + month + '/' + year 
          this.setState({beautifulDate: beautifulDate})
       }
-
+      
     async selectedCardStorage(){
         try{
             const cardValue = JSON.stringify(this.props.DataShown);
             await AsyncStorage.setItem('Selected', cardValue)
-            console.log(cardValue);
+            console.log('se almaceno el dato');
         } catch(error){
             console.log(error)
         }
@@ -39,14 +43,19 @@ export default class Cards extends Component {
       render() {
         return (
             <View style={styleCards.ViewCard}>
+                    <TouchableOpacity style={styleCards.Select}
+                    onPress= {this.selectedCardStorage.bind(this)}
+                    >
+                        <AntDesign name="checkcircleo" size={24} color="white" />   
+                    </TouchableOpacity>
                     <Image style={{height:100, width:100, borderRadius:50, alignSelf:'center'}} source={{uri:this.props.DataShown.picture.medium}}/>
                     <Text style={styleCards.NameLastName}> {this.props.DataShown.name.last}, {this.props.DataShown.name.first} </Text>
                     <Text style={styleCards.Mail}>{this.props.DataShown.email}</Text>
                     <Text style={styleCards.Birthday}> {this.state.beautifulDate} - ({this.props.DataShown.dob.age})</Text> 
-                    <TouchableOpacity style = {{backgroundColor: "blue", width: 100, alignSelf: "center", borderRadius:10, padding:2, marginTop:50}}><Text>More Info</Text></TouchableOpacity> 
-                    <TouchableOpacity 
-                    onPress= {this.selectedCardStorage.bind(this)}
-                    style = {{backgroundColor: "pink", width: 100, alignSelf: "center", borderRadius:10, padding: 2,marginTop:20}}><Text>Select</Text></TouchableOpacity>    
+                    <TouchableOpacity style = {styleCards.MoreInfo}>
+                            <AntDesign name="plus" color="black"> <Text> More info </Text></AntDesign>
+                    </TouchableOpacity> 
+                        
             </View>
         )
     }

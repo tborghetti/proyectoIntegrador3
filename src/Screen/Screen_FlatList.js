@@ -26,7 +26,7 @@ export default class Screen_FlatList extends Component {
 
 renderItem = ({item})=> {
   return(
-    <View >
+    <View>
       {this.state.infoCards.map( (oneCard, idx) => {
         return (
            <Cards DataShown={oneCard} key={idx} id={oneCard.id} 

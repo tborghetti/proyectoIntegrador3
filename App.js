@@ -19,7 +19,8 @@ export default class App extends Component {
   render(){
     return (
       <View style={styleApp.container}>
-      <Screen_FlatList/>
+      <Screen_ViewImportCards/>
+      {/* <Screen_FlatList /> */}
       </View>
     );
   }

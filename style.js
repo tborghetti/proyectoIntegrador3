@@ -64,7 +64,7 @@ const styleApp = StyleSheet.create({
      borderLeftWidth: 1,
      borderRightWidth: 1,
      borderTopWidth: 1,
-     borderColor: '#C0FF38',
+     borderColor: '#242323',
      borderStyle: 'solid',
      borderRadius: 12,
      backgroundColor: '#363636',
@@ -73,14 +73,30 @@ const styleApp = StyleSheet.create({
      alignItems:'center'
     },
     NameLastName: {
+      fontSize: 20,
       color: '#ff7100',
+      padding: 5,
       // fontFamily: 'sans-serif',
     },
     Mail:{
-      color: '#fcb554'
+      color: '#fcb554',
+      padding: 5,
     },
     Birthday:{
-      color: 'whitesmoke'
+      color: 'whitesmoke',
+      padding: 5,
+    },
+    Select:{
+      alignSelf:'flex-start',
+      margin: 5,
+    },
+    MoreInfo:{
+      backgroundColor: "#ff7100", 
+      alignSelf: "center", 
+      borderRadius:10, 
+      padding:2, 
+      marginTop:20,
+      fontSize: 15
     }
   });
 
