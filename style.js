@@ -114,10 +114,20 @@ const styleApp = StyleSheet.create({
       flex:1,
       justifyContent:'center',
       alignItems:'center',
-      width:'100%'
+      width:'100%',
+      backgroundColor: "#363636"
     },
     card:{
       width:100
+    },
+    button: {
+      backgroundColor: 'orange', 
+      height: 60, 
+      width: "100%",
+      //position:'absolute',
+      justifyContent: 'center',
+       alignItems: 'center'
+
     }
   })
 

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {
-  Button,
+  TouchableOpacity,
   ActivityIndicator,
   FlatList,
     Text,
@@ -67,7 +67,14 @@ keyExtractor = (item, idx) => idx.toString()
                renderItem={this.renderItem}
                numColumns={2}
                />
-               
+
+              <TouchableOpacity
+	            style= {styleFlatList.button}
+              onPress={() => this.props.navigation.navigate('Screen_ViewImportCards')}
+	            > 
+	              	<Text style= {{fontSize: 15, fontWeight: "bold"}}>Importar Tarjetas</Text>
+	            </TouchableOpacity>
+
             </View>
         )
     }
