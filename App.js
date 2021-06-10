@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {styleApp} from "./style";
 import { 
   Text, 
-  View 
+  View
 } from 'react-native';
 import Screen_ImportCards from './src/Screen/Screen_ImportCards';
 import Screen_ViewImportCards from './src/Screen/Screen_ViewImportCards';
@@ -19,8 +19,7 @@ export default class App extends Component {
   render(){
     return (
       <View style={styleApp.container}>
-      <Screen_ViewImportCards/>
-      {/* <Screen_FlatList /> */}
+      <Screen_FlatList/>
       </View>
     );
   }

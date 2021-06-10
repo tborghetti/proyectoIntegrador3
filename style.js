@@ -55,7 +55,7 @@ const styleApp = StyleSheet.create({
   const styleCards = StyleSheet.create({
     ViewCard:{
      width: 200,
-     height: 300,
+     height: 350,
      textAlign: "center",
      marginTop:10,
      marginBottom: 3,
@@ -95,7 +95,7 @@ const styleApp = StyleSheet.create({
       alignSelf: "center", 
       borderRadius:10, 
       padding:2, 
-      marginTop:20,
+      marginTop:30,
       fontSize: 15
     }
   });
@@ -118,7 +118,6 @@ const styleApp = StyleSheet.create({
     },
     card:{
       width:100
-      
     }
   })
 

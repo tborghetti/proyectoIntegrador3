@@ -18,15 +18,11 @@ export default class Screen_ViewImportCards extends Component {
 
   async getData() {
     try{
-      const jsonValue = await AsyncStorage.getItem('Selected');
-      if(jsonValue !== null){
-      const jsonParsed = JSON.parse(jsonValue);
-       this.setState({importedCards: jsonParsed});
-      }else{
-      console.log('No se encontro la key :( ');
-      }
-      } catch(e){
-      console.log(error);
+      const cardsBrought = await AsyncStorage.getItem('Selected');
+       this.setState({importedCards: JSON.parse(cardsBrought)});
+       console.log(cardsBrought)
+    }catch(e){
+      console.log(e);
       }
   }
 
@@ -34,12 +30,7 @@ export default class Screen_ViewImportCards extends Component {
     return (
       <View style={styleImportCards.container}>
         <Text>Mostramos los valores importados</Text>
-        {this.state.importedCards.map( (oneCard, idx) => {
-            return (
-                    <Cards DataShown={oneCard} key={idx} id={oneCard.id} originaldate={oneCard.dob.date} />
-            )
-          })
-        }
+          {this.state.importedCards}
         <TouchableOpacity style={{ backgroundColor: 'red' }} onPress={this.getData.bind(this)}>
           <View>
             <Text>Recuperar datos</Text>
@@ -71,3 +62,6 @@ export default class Screen_ViewImportCards extends Component {
 //  )
 //})
 //}
+
+
+

@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import {
+  Button,
+  ActivityIndicator,
   FlatList,
     Text,
     View
@@ -12,17 +14,20 @@ export default class Screen_FlatList extends Component {
     constructor(){
         super();
         this.state = {
-          infoCards: []
+          infoCards: [],
+          activity:true
         }
     }
 
     componentDidMount(){
-      fetch('https://randomuser.me/api/?results=22')
+      fetch('https://randomuser.me/api/?results=3')
       .then((result) => result.json())
       .then((data) => { 
-        this.setState({infoCards: data.results})
+        this.setState({infoCards: data.results, activity: false})
       })
     }
+
+    
 
 renderItem = ({item})=> {
   return(
@@ -44,15 +49,25 @@ keyExtractor = (item, idx) => idx.toString()
     render() {
         return (
             <View style={styleFlatList.container}>
+
             <View style={styleHeader.container}>
               <Text style={styleHeader.title}>Header</Text>
             </View>
-               <FlatList
+            {
+              this.state.activity &&
+              <ActivityIndicator
+              size='large'
+              color='orange' />
+            }
+              
+               <FlatList 
+               style={styleFlatList.indicator}
                data={this.state.infoCards}
                keyExtractor={this.keyExtractor}
                renderItem={this.renderItem}
                numColumns={2}
                />
+               
             </View>
         )
     }

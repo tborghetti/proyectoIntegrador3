@@ -34,7 +34,7 @@ export default class Cards extends Component {
         try{
             const cardValue = JSON.stringify(this.props.DataShown);
             await AsyncStorage.setItem('Selected', cardValue)
-            console.log('se almaceno el dato');
+            console.log('se almaceno');
         } catch(error){
             console.log(error)
         }
