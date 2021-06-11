@@ -4,7 +4,6 @@ import {
   Text, 
   View
 } from 'react-native';
-import Screen_ImportCards from './src/Screen/Screen_ImportCards';
 import Screen_ViewImportCards from './src/Screen/Screen_ViewImportCards';
 import Screen_FlatList from './src/Screen/Screen_FlatList';
 import 'react-native-gesture-handler';

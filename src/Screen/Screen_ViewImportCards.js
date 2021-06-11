@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { styleImportCards } from '../../style';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Cards from '../Components/Cards';
 import {
@@ -17,20 +16,20 @@ export default class Screen_ViewImportCards extends Component {
   }
 
   async getData() {
-    try{
+    try {
       const cardsBrought = await AsyncStorage.getItem('Selected');
-       this.setState({importedCards: JSON.parse(cardsBrought)});
-       console.log(cardsBrought)
-    }catch(e){
+      this.setState({ importedCards: JSON.parse(cardsBrought) });
+      console.log(cardsBrought)
+    } catch (e) {
       console.log(e);
-      }
+    }
   }
 
   render() {
     return (
-      <View style={styleImportCards.container}>
+      <View>
         <Text>Mostramos los valores importados</Text>
-          {this.state.importedCards}
+        {this.state.importedCards}
         <TouchableOpacity style={{ backgroundColor: 'red' }} onPress={this.getData.bind(this)}>
           <View>
             <Text>Recuperar datos</Text>
@@ -45,23 +44,6 @@ export default class Screen_ViewImportCards extends Component {
     )
   }
 }
-
-
-
-// ninguno de los dos esta funciondo para mostrar la tarjeta seleccionada:
-//{this.state.importedCards.map( (oneCard, idx) => {
-  //return (
-  //    <Cards DataShown={oneCard} key={idx} id={oneCard.id} originaldate={oneCard.dob.date} />
- //  )
- //  })
-// }
-
-//{this.state.importedCards.map((oneCard, idx) => {
-// return (
-//    <Text>{oneCard.name.first}</Text>
-//  )
-//})
-//}
 
 
 

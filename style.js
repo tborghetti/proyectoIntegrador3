@@ -54,7 +54,7 @@ const styleApp = StyleSheet.create({
 
   const styleCards = StyleSheet.create({
     ViewCard:{
-     width: 200,
+     width: 180,
      height: 350,
      textAlign: "center",
      marginTop:10,
@@ -100,15 +100,6 @@ const styleApp = StyleSheet.create({
     }
   });
 
-  const styleImportCards = StyleSheet.create({
-    container:{
-      flex: 1,
-      flexDirection: "column",
-      justifyContent: "space-evenly",
-      alignItems: "center",
-    }
-  });
-
   const styleFlatList = StyleSheet.create({
     container:{
       flex:1,
@@ -132,4 +123,4 @@ const styleApp = StyleSheet.create({
   })
 
 
-  export {styleApp, styleHeader, styleCardsContainer, styleCards, styleImportCards, styleFlatList}
+  export {styleApp, styleHeader, styleCardsContainer, styleCards, styleFlatList}
