@@ -44,6 +44,8 @@ export default class Cards extends Component {
         }
     }
 
+
+
     // SelectedCards = (item) => {
     //     let info = this.state.ArraySelectedCards.concat("item")
     //     this.setState({ArraySelectedCards: info})
@@ -53,10 +55,16 @@ export default class Cards extends Component {
     render() {
         return (
             <View style={styleCards.ViewCard}>
+            
                 <TouchableOpacity style={styleCards.Select}
                     onPress={this.selectedCardStorage.bind(this)}
                 >
                     <AntDesign name="checkcircleo" size={24} color="white" />
+                </TouchableOpacity>
+                <TouchableOpacity style={styleCards.Close}
+                    // onPress={this.delete.bind(this,this.props.id)}
+                >
+                    <AntDesign name="closecircleo" size={24} color="white" />
                 </TouchableOpacity>
                 <Image style={{ height: 100, width: 100, borderRadius: 50, alignSelf: 'center' }} source={{ uri: this.props.DataShown.picture.medium }} />
                 <Text style={styleCards.NameLastName}> {this.props.DataShown.name.last}, {this.props.DataShown.name.first} </Text>

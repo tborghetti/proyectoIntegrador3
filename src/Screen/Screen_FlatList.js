@@ -29,6 +29,14 @@ export default class Screen_FlatList extends Component {
       })
   }
 
+  // delete(idCard){
+  //   console.log(idCard);
+  //   let person = this.state.infoCards.filter((item)=>{
+  //     return item.id !== idCard
+  //   })
+  //   this.setState({infoCards:person})
+  // }
+
   renderItem = ({ item }) => (
     <Cards DataShown={item} originaldate={item.dob.date} />
   )

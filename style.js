@@ -90,6 +90,11 @@ const styleApp = StyleSheet.create({
       alignSelf:'flex-start',
       margin: 5,
     },
+    Close:{
+      position:'absolute',
+      right:5,
+      top:5
+    },
     MoreInfo:{
       backgroundColor: "#ff7100", 
       alignSelf: "center", 
