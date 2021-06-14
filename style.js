@@ -118,9 +118,38 @@ const styleApp = StyleSheet.create({
       //position:'absolute',
       justifyContent: 'center',
        alignItems: 'center'
-
+    },
+    ActivityIndicator: {
+      flex:1,
+      justifyContent: 'center',
+      alignItems:'center'
     }
-  })
+  });
+  const styleModal = StyleSheet.create({
+    container:{
+        flex:1,
+        justifyContent:'center',
+        alignItems:'center'
+    },
+    modal:{
+      backgroundColor:'white',
+      width:'80%',
+      height:'75%',
+      justifyContent:'center',
+      alignItems:'center',
+      borderRadius:10,
+      shadowOpacity:2,
+      shadowColor:'#ff7100'
+    },
+    text:{
+      fontSize: 20,
+      color: 'black',
+    },
+    close:{
+      position:'absolute',
+      right:20,
+      top:10
+    }
+  });
 
-
-  export {styleApp, styleHeader, styleCardsContainer, styleCards, styleFlatList}
+  export {styleApp, styleHeader, styleCardsContainer, styleCards, styleFlatList,styleModal}

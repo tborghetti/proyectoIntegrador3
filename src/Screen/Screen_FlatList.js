@@ -22,7 +22,7 @@ export default class Screen_FlatList extends Component {
   }
 
   componentDidMount() {
-    fetch('https://randomuser.me/api/?results=3')
+    fetch('https://randomuser.me/api/?results=8')
       .then((result) => result.json())
       .then((data) => {
         this.setState({ infoCards: data.results, activity: false })
@@ -43,13 +43,14 @@ export default class Screen_FlatList extends Component {
         <View style={styleHeader.container}>
           <Text style={styleHeader.title}>Header</Text>
         </View>
-        {
-          this.state.activity &&
-          <ActivityIndicator
-            size='large'
-            color='orange' />
-        }
-
+        <View style={styleFlatList.ActivityIndicator}>
+            {
+              this.state.activity &&
+              <ActivityIndicator
+                size='large'
+                color='orange' />
+            }
+        </View>
         <FlatList
           style={styleFlatList.indicator}
           data={this.state.infoCards}
