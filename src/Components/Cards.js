@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { styleCards,styleModal} from '../../style';
+import { styleCards,styleModal, styleModalComments} from '../../style';
+import { FontAwesome } from '@expo/vector-icons';
 
 // import MoreDetails from './MoreDetails'
 import {
@@ -8,7 +9,8 @@ import {
     View,
     Image,
     TouchableOpacity,
-    Modal
+    Modal,
+    TextInput
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { AntDesign } from '@expo/vector-icons';
@@ -19,7 +21,9 @@ export default class Cards extends Component {
         super(props);
         this.state = {
             ArraySelectedCards: [],
-            showModal: false
+            showModal: false,
+            showComments: false,
+            texto:[]
         }
     }
     async componentDidMount() {
@@ -44,32 +48,55 @@ export default class Cards extends Component {
         }
     }
 
-
-
     // SelectedCards = (item) => {
     //     let info = this.state.ArraySelectedCards.concat("item")
     //     this.setState({ArraySelectedCards: info})
     // }
+    async setComments(value){
+        try {
+            const jsonValue = JSON.stringify(value)		
+            await AsyncStorage.setItem('Comments', jsonValue);
+            console.log('se almaceno');
+        }catch(e){
+            // saving error
+        }
+        
+    }
+    
+    async getComments(){
+        try{
+            const theComments = await AsyncStorage.getItem('Comments');
+            if(theComments !== null){
+                const jsonParsed= JSON.parse(theComments);
+                this.setState({texto: jsonParsed})
+                
+            }else{
+                console.log('No se encontraron datos')
+            }
+        }catch(e){
+            console.log(e);
+        }
+    }
 
+    
 
     render() {
         return (
             <View style={styleCards.ViewCard}>
             
                 <TouchableOpacity style={styleCards.Select}
-                    onPress={this.selectedCardStorage.bind(this)}
-                >
+                    onPress={this.selectedCardStorage.bind(this)}>
                     <AntDesign name="checkcircleo" size={24} color="white" />
                 </TouchableOpacity>
                 <TouchableOpacity style={styleCards.Close}
-                    // onPress={this.delete.bind(this,this.props.id)}
-                >
+                   onPress={this.props.onDelete.bind(this,this.props.id)}>
                     <AntDesign name="closecircleo" size={24} color="white" />
                 </TouchableOpacity>
                 <Image style={{ height: 100, width: 100, borderRadius: 50, alignSelf: 'center' }} source={{ uri: this.props.DataShown.picture.medium }} />
                 <Text style={styleCards.NameLastName}> {this.props.DataShown.name.last}, {this.props.DataShown.name.first} </Text>
                 <Text style={styleCards.Mail}>{this.props.DataShown.email}</Text>
                 <Text style={styleCards.Birthday}> {this.state.beautifulDate} - ({this.props.DataShown.dob.age})</Text>
+        {/* more info */}        
                 <TouchableOpacity style={styleCards.MoreInfo}>
                     <AntDesign name="plus" color="black" onPress={()=> this.setState({showModal:true})}> <Text> More info </Text></AntDesign>
                 </TouchableOpacity>
@@ -77,23 +104,45 @@ export default class Cards extends Component {
                 transparent='true'
                 animationType='slide'
                 >
-                <View style={styleModal.container}>
-                    <View style={styleModal.modal}>
-                    <TouchableOpacity style={styleModal.close}
-                    onPress={()=> this.setState({showModal:false})}
-                >
-                    <AntDesign name="closecircleo" size={24} color="black" />
-                </TouchableOpacity>
-                <Image style={{ height: 150, width: 150, borderRadius: 50, alignSelf: 'center' }} source={{ uri: this.props.DataShown.picture.large }} />
-                <Text style={styleModal.text}>{this.props.DataShown.location.street.name} {this.props.DataShown.location.street.number}</Text>
-                <Text style={styleModal.text}>{this.props.DataShown.location.city}, {this.props.DataShown.location.state}</Text>
-                <Text style={styleModal.text}>{this.props.DataShown.location.country}</Text>
-                <Text style={styleModal.text}>{this.props.DataShown.location.postcode}</Text>
-                <Text style={styleModal.text}>{this.props.DataShown.dob.registered}</Text>
-                <Text style={styleModal.text}>{this.props.DataShown.dob.phone}</Text>
-                
+                    <View style={styleModal.container}>
+                        <View style={styleModal.modal}>
+                            <TouchableOpacity style={styleModal.close}
+                            onPress={()=> this.setState({showModal:false})} >
+                                <AntDesign name="closecircleo" size={24} color="#ff7100" />
+                            </TouchableOpacity>
+                            <Image style={{ height: 150, width: 150, borderRadius: 50, alignSelf: 'center' }} source={{ uri: this.props.DataShown.picture.large }} />
+                            <Text style={styleModal.text}>{this.props.DataShown.location.street.name} {this.props.DataShown.location.street.number}</Text>
+                            <Text style={styleModal.text}>{this.props.DataShown.location.city}, {this.props.DataShown.location.state}</Text>
+                            <Text style={styleModal.text}>{this.props.DataShown.location.country}</Text>
+                            <Text style={styleModal.text}>{this.props.DataShown.location.postcode}</Text>
+                            <Text style={styleModal.text}>{this.props.DataShown.dob.registered}</Text>
+                            <Text style={styleModal.text}>{this.props.DataShown.dob.phone}</Text>
+                        </View>
                     </View>
-                </View>
+                </Modal>
+        {/* add comments */}
+                <TouchableOpacity style={styleCards.Comments}>
+                    <FontAwesome name="comments" color="black" size={12} onPress={()=> this.setState({showComments:true})}><Text> Add Comments</Text></FontAwesome>
+                </TouchableOpacity>
+                <Modal visible ={this.state.showComments} 
+                transparent='true'
+                animationType='slide'
+                >
+                    <View style={styleModalComments.container}>
+                        <View style={styleModalComments.modal}>
+                            <TouchableOpacity style={styleModal.close}
+                            onPress={()=> this.setState({showComments:false})} >
+                                <AntDesign name="closecircleo" size={24} color="#ff7100" />
+                            </TouchableOpacity>
+                            <Text style={styleModalComments.textTitle}> Comentarios Anteriores: </Text>
+                            <Text style={styleModalComments.text}> {this.state.texto} </Text>
+                            <TextInput style={styleModalComments.TextInput}
+                            placeholder='ADD COMMENT' 
+                            onSubmitEditing={this.setComments.bind(this)}
+                            ></TextInput>
+                           
+                        </View>
+                    </View>
                 </Modal>
             </View>
         )

@@ -13,8 +13,8 @@ import Cards from '../Components/Cards';
 
 
 export default class Screen_FlatList extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       infoCards: [],
       activity: true
@@ -29,16 +29,16 @@ export default class Screen_FlatList extends Component {
       })
   }
 
-  // delete(idCard){
-  //   console.log(idCard);
-  //   let person = this.state.infoCards.filter((item)=>{
-  //     return item.id !== idCard
-  //   })
-  //   this.setState({infoCards:person})
-  // }
+  delete(idCard){
+    console.log(idCard);
+    let person = this.state.infoCards.filter((item)=>{
+      return item.login.uuid !== idCard
+    })
+    this.setState({infoCards:person})
+  }
 
   renderItem = ({ item }) => (
-    <Cards DataShown={item} originaldate={item.dob.date} />
+    <Cards DataShown={item} originaldate={item.dob.date} onDelete={this.delete.bind(this)} />
   )
 
 

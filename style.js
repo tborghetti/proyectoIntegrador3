@@ -102,6 +102,13 @@ const styleApp = StyleSheet.create({
       padding:2, 
       marginTop:30,
       fontSize: 15
+    },
+    Comments: {
+      backgroundColor: "#ff7100", 
+      alignSelf: "center", 
+      borderRadius:10, 
+      padding:2, 
+      marginTop:10,
     }
   });
 
@@ -137,7 +144,7 @@ const styleApp = StyleSheet.create({
         alignItems:'center'
     },
     modal:{
-      backgroundColor:'white',
+      backgroundColor: '#363636',
       width:'80%',
       height:'75%',
       justifyContent:'center',
@@ -148,13 +155,55 @@ const styleApp = StyleSheet.create({
     },
     text:{
       fontSize: 20,
-      color: 'black',
+      color: 'white',
+      padding: 2,
     },
     close:{
       position:'absolute',
       right:20,
-      top:10
+      top:20
+    }
+  });
+  const styleModalComments = StyleSheet.create({
+    container:{
+        flex:1,
+        justifyContent:'center',
+        alignItems:'center'
+    },
+    modal:{
+      backgroundColor: '#363636',
+      width:'80%',
+      height:'75%',
+      justifyContent:'flex-start',
+      paddingTop: 30,
+      alignItems:'center',
+      borderRadius:10,
+      shadowOpacity:2,
+      shadowColor:'#ff7100'
+    },
+    text:{
+      fontSize: 20,
+      color: 'white',
+      padding: 4,
+    },
+    textTitle:{
+      top: 20,
+      fontSize: 30,
+      color: 'white'
+    },
+    close:{
+      position:'absolute',
+      right:20,
+      top:20
+    },
+    TextInput:{
+      width: 150,
+      color: 'black',
+      backgroundColor: 'white',
+      fontSize: 20,
+      top: 20
+      
     }
   });
 
-  export {styleApp, styleHeader, styleCardsContainer, styleCards, styleFlatList,styleModal}
+  export {styleApp, styleHeader, styleCardsContainer, styleCards, styleFlatList,styleModal, styleModalComments}
