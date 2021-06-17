@@ -53,7 +53,7 @@ const styleApp = StyleSheet.create({
   });
 
   const styleCards = StyleSheet.create({
-    ViewCard:{
+    Card:{
      width: 180,
      height: 350,
      textAlign: "center",
@@ -205,5 +205,33 @@ const styleApp = StyleSheet.create({
       
     }
   });
+  const styleViewCards = StyleSheet.create({
+    container:{
+      flex: 1,
+      backgroundColor: "#363636",
+      justifyContent:'center'
+    },
+    recuperarDatos:{
+      backgroundColor: "#ff7100", 
+      borderRadius:5, 
+      padding:2, 
+      marginTop:30,
+      fontSize: 15,
+    },
+    ocultarDatos:{
+      backgroundColor: "#ff7100", 
+      borderRadius:5, 
+      padding:2, 
+      marginTop:30,
+      fontSize: 15,
+    },
+  });
 
-  export {styleApp, styleHeader, styleCardsContainer, styleCards, styleFlatList,styleModal, styleModalComments}
+  export {styleApp, 
+    styleHeader, 
+    styleCardsContainer, 
+    styleCards, 
+    styleFlatList,
+    styleModal, 
+    styleModalComments,
+    styleViewCards}

@@ -23,10 +23,16 @@ export default class Cards extends Component {
             ArraySelectedCards: [],
             showModal: false,
             showComments: false,
-            texto:[]
+            texto:[],
+            commentHandler: ''
         }
     }
+    async componentDidUpdate(){
+      //  await this.getComments()
+    }
+
     async componentDidMount() {
+        await AsyncStorage.removeItem('Comments');
         let apiDate = this.props.originaldate;
         let timestamp = new Date(apiDate).getTime(); //Date es una funcion que viene de React
         let day = new Date(timestamp).getDate();
@@ -38,27 +44,32 @@ export default class Cards extends Component {
 
     async selectedCardStorage(item) {
         try {
-            let info = this.state.ArraySelectedCards.concat(item);
-            this.setState({ArraySelectedCards: info})
-            const cardValue = JSON.stringify(this.state.ArraySelectedCards);
+            let storage = await AsyncStorage.getItem('Selected');
+            storage = JSON.parse(storage);
+            if(storage === null) storage = [];
+            console.log(storage);
+            storage.push(this.props.DataShown);
+            const cardValue = JSON.stringify(storage);
             await AsyncStorage.setItem('Selected', cardValue)
-            console.log("Card seleccionada");
+            
         } catch (error) {
             console.log(error)
         }
     }
 
-    // SelectedCards = (item) => {
-    //     let info = this.state.ArraySelectedCards.concat("item")
-    //     this.setState({ArraySelectedCards: info})
-    // }
-    async setComments(value){
+ 
+    async setComments(){
         try {
-            const jsonValue = JSON.stringify(value)		
+            let storage = await AsyncStorage.getItem('Comments');
+            storage = JSON.parse(storage);
+            if(storage === null) storage = [];
+            console.log(storage);
+            storage.push(this.state.commentHandler);
+            const jsonValue = JSON.stringify(storage)		
             await AsyncStorage.setItem('Comments', jsonValue);
-            console.log('se almaceno');
+            console.log('se almaceno: ' + jsonValue);
         }catch(e){
-            // saving error
+            console.log(e);
         }
         
     }
@@ -69,7 +80,6 @@ export default class Cards extends Component {
             if(theComments !== null){
                 const jsonParsed= JSON.parse(theComments);
                 this.setState({texto: jsonParsed})
-                
             }else{
                 console.log('No se encontraron datos')
             }
@@ -82,14 +92,14 @@ export default class Cards extends Component {
 
     render() {
         return (
-            <View style={styleCards.ViewCard}>
+            <View style={styleCards.Card}>
             
                 <TouchableOpacity style={styleCards.Select}
                     onPress={this.selectedCardStorage.bind(this)}>
                     <AntDesign name="checkcircleo" size={24} color="white" />
                 </TouchableOpacity>
                 <TouchableOpacity style={styleCards.Close}
-                   onPress={this.props.onDelete.bind(this,this.props.id)}>
+                   onPress={()=>this.props.onDelete(this.props.Datashown.login.uuid)}>
                     <AntDesign name="closecircleo" size={24} color="white" />
                 </TouchableOpacity>
                 <Image style={{ height: 100, width: 100, borderRadius: 50, alignSelf: 'center' }} source={{ uri: this.props.DataShown.picture.medium }} />
@@ -137,7 +147,8 @@ export default class Cards extends Component {
                             <Text style={styleModalComments.textTitle}> Comentarios Anteriores: </Text>
                             <Text style={styleModalComments.text}> {this.state.texto} </Text>
                             <TextInput style={styleModalComments.TextInput}
-                            placeholder='ADD COMMENT' 
+                            placeholder='ADD COMMENT'
+                            onChangeText={texto => this.setState({commentHandler: texto})} 
                             onSubmitEditing={this.setComments.bind(this)}
                             ></TextInput>
                            

@@ -60,7 +60,6 @@ export default class Screen_FlatList extends Component {
             }
         </View>
         <FlatList
-          style={styleFlatList.indicator}
           data={this.state.infoCards}
           keyExtractor={this.keyExtractor}
           renderItem={this.renderItem}
