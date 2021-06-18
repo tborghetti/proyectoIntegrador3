@@ -48,9 +48,15 @@ export default class Cards extends Component {
             storage = JSON.parse(storage);
             if(storage === null) storage = [];
             console.log(storage);
-            storage.push(this.props.DataShown);
+            let data = storage.find(function(ele) {
+                return ele.login.uuid === item.login.uuid;
+            });
+            if (!data){ 
+                storage.push(this.props.DataShown);
             const cardValue = JSON.stringify(storage);
             await AsyncStorage.setItem('Selected', cardValue)
+                }
+            
             
         } catch (error) {
             console.log(error)
@@ -99,7 +105,7 @@ export default class Cards extends Component {
                     <AntDesign name="checkcircleo" size={24} color="white" />
                 </TouchableOpacity>
                 <TouchableOpacity style={styleCards.Close}
-                   onPress={()=>this.props.onDelete(this.props.Datashown.login.uuid)}>
+                   onPress={()=>this.props.onDelete(this.props.DataShown.login.uuid)}>
                     <AntDesign name="closecircleo" size={24} color="white" />
                 </TouchableOpacity>
                 <Image style={{ height: 100, width: 100, borderRadius: 50, alignSelf: 'center' }} source={{ uri: this.props.DataShown.picture.medium }} />

@@ -31,10 +31,26 @@ export default class Screen_ViewImportCards extends Component {
     }
   }
   
-  delete(idCard){
+  async delete(idCard){
     console.log(idCard);
    //guardar bajo la key 'papelera' y sacar de selected
+   let person = this.state.importedCards.filter((item)=>{
+    return item.login.uuid !== idCard
+  })
+  let personBorrada = this.state.importedCards.filter((item)=>{
+    return item.login.uuid === idCard
+  })
+  this.setState({importedCards:person})
+  let toJSON = JSON.stringify(person)
+  await AsyncStorage.setItem("Selected", toJSON)
+  let storage = await AsyncStorage.getItem('RecycleBin');
+        storage = JSON.parse(storage);
+        if(storage === null) storage = [];
+        storage.push(personBorrada);
+        const jsonValue = JSON.stringify(storage)		
+        await AsyncStorage.setItem('RecycleBin', jsonValue);
   }
+
   
   renderItem = ({ item }) => (
     <Cards DataShown={item} originaldate={item.dob.date} onDelete={this.delete.bind(this)} />
@@ -58,6 +74,11 @@ export default class Screen_ViewImportCards extends Component {
             <Text>Ocultar datos importados</Text> 
           </MaterialCommunityIcons>
         </TouchableOpacity>
+        <TouchableOpacity
+          style = {{backgroundColor: "green"}}
+          onPress={() => this.props.navigation.navigate('Screen_RecycleBin')}>
+          <Text style={{ fontSize: 15, fontWeight: "bold" }}>Papelera</Text>
+           </TouchableOpacity>
         <FlatList
           style={styleFlatList.indicator}
           data={this.state.importedCards}

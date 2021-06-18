@@ -8,7 +8,7 @@ import {
   Touchable,
   TextInput
 } from 'react-native';
-import {styleFlatList, styleHeader } from '../../style';
+import { styleFlatList, styleHeader } from '../../style';
 import Cards from '../Components/Cards';
 
 
@@ -17,32 +17,43 @@ export default class Screen_FlatList extends Component {
     super(props);
     this.state = {
       infoCards: [],
-      activity: true
+      activity: false,
+      numberOfCards: [], 
     }
   }
 
-  componentDidMount() {
-    fetch('https://randomuser.me/api/?results=8')
-      .then((result) => result.json())
-      .then((data) => {
-        this.setState({ infoCards: data.results, activity: false })
-      })
-  }
+  // componentDidMount() {
+  //   fetch('https://randomuser.me/api/?results=0')
+  //     .then((result) => result.json())
+  //     .then((data) => {
+  //       this.setState({ infoCards: data.results, activity: false })
+  //     })
+  // }
 
-  delete(idCard){
+  delete(idCard) {
     console.log(idCard);
-    let person = this.state.infoCards.filter((item)=>{
+    let person = this.state.infoCards.filter((item) => {
       return item.login.uuid !== idCard
     })
-    this.setState({infoCards:person})
+    this.setState({ infoCards: person })
   }
 
   renderItem = ({ item }) => (
     <Cards DataShown={item} originaldate={item.dob.date} onDelete={this.delete.bind(this)} />
   )
 
-
   keyExtractor = (item, idx) => idx.toString()
+
+  addCard(numero){
+     fetch('https://randomuser.me/api/?results='+ numero) 
+     .then((result) => result.json())
+     .then((data) => { 
+       let info = data.results.concat(this.state.infoCards); //concat:metodo que permite unir dos arrays en uno - guardar eso en una var - pusios primero el data.results para que 
+       this.setState({infoCards: info})
+     })
+    console.log("hello")
+   }
+
 
   render() {
     return (
@@ -50,15 +61,35 @@ export default class Screen_FlatList extends Component {
 
         <View style={styleHeader.container}>
           <Text style={styleHeader.title}>Header</Text>
+          <TouchableOpacity
+          style = {{backgroundColor: "pink"}}
+          onPress={() => this.props.navigation.navigate('Screen_AboutUs')}>
+          <Text style={{ fontSize: 15, fontWeight: "bold" }}>Ir a About Us</Text>
+           </TouchableOpacity>
         </View>
         <View style={styleFlatList.ActivityIndicator}>
-            {
-              this.state.activity &&
-              <ActivityIndicator
-                size='large'
-                color='orange' />
-            }
+          {
+            this.state.activity &&
+            <ActivityIndicator
+              size='large'
+              color='orange' />
+          }
         </View>
+
+
+        <View>
+        <TextInput 
+          style={{backgroundColor: "red"}}
+          placeholder='ADD CARD'
+          onChangeText={numero => this.addCard(numero)}
+          keyboardType="numeric"
+        /> 
+        {/* <Touchable
+        onPress={this.addCard.bind(this)}
+        ></Touchable> */}
+        </View>
+
+
         <FlatList
           data={this.state.infoCards}
           keyExtractor={this.keyExtractor}
