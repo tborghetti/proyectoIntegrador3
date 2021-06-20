@@ -17,7 +17,7 @@ export default class Screen_FlatList extends Component {
     super(props);
     this.state = {
       infoCards: [],
-      activity: false,
+      activity: true,
       numberOfCards: [], 
     }
   }
@@ -49,7 +49,7 @@ export default class Screen_FlatList extends Component {
      .then((result) => result.json())
      .then((data) => { 
        let info = data.results.concat(this.state.infoCards); //concat:metodo que permite unir dos arrays en uno - guardar eso en una var - pusios primero el data.results para que 
-       this.setState({infoCards: info})
+       this.setState({infoCards: info, activity:false})
      })
     console.log("hello")
    }
@@ -79,7 +79,7 @@ export default class Screen_FlatList extends Component {
 
         <View>
         <TextInput 
-          style={{backgroundColor: "red"}}
+          style={styleFlatList.inputText}
           placeholder='ADD CARD'
           onChangeText={numero => this.addCard(numero)}
           keyboardType="numeric"

@@ -155,9 +155,13 @@ export default class Cards extends Component {
                             <TextInput style={styleModalComments.TextInput}
                             placeholder='ADD COMMENT'
                             onChangeText={texto => this.setState({commentHandler: texto})} 
-                            onSubmitEditing={this.setComments.bind(this)}
+                            
                             ></TextInput>
-                           
+                            <TouchableOpacity 
+                            style={styleCards.submitComment}
+                            onPress={() => { this.setComments.bind(this); this.setState({showComments:false});}} >
+                            <Text style={{fontWeight:'bold',textAlign:'center',paddingTop:5,fontSize:16}}>Enviar</Text>
+                            </TouchableOpacity>
                         </View>
                     </View>
                 </Modal>

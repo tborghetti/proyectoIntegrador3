@@ -12,7 +12,7 @@ const styleApp = StyleSheet.create({
   const styleHeader = StyleSheet.create({
     container:{
       width:'100%',
-      padding:50,
+      padding:15,
       marginTop:0,
       backgroundColor:'grey',
       justifyContent:'center',
@@ -109,6 +109,14 @@ const styleApp = StyleSheet.create({
       borderRadius:10, 
       padding:2, 
       marginTop:10,
+    },
+    submitComment:{
+ 
+      width:100,
+      height:30,
+      backgroundColor:'orange',
+      marginTop:500,
+      borderRadius:10
     }
   });
 
@@ -135,6 +143,17 @@ const styleApp = StyleSheet.create({
       flex:1,
       justifyContent: 'center',
       alignItems:'center'
+    },
+    flatImport:{
+      
+      marginLeft:25
+    },
+    inputText:{
+      width:100,
+      height:25,
+      borderRadius:10,
+      backgroundColor:'pink',
+      textAlign:'center'
     }
   });
   const styleModal = StyleSheet.create({
@@ -201,7 +220,9 @@ const styleApp = StyleSheet.create({
       color: 'black',
       backgroundColor: 'white',
       fontSize: 20,
-      top: 20
+      top: 20,
+      borderRadius:4,
+      textAlign:'center'
       
     }
   });

@@ -80,7 +80,7 @@ export default class Screen_ViewImportCards extends Component {
           <Text style={{ fontSize: 15, fontWeight: "bold" }}>Papelera</Text>
            </TouchableOpacity>
         <FlatList
-          style={styleFlatList.indicator}
+          style={styleFlatList.flatImport}
           data={this.state.importedCards}
           keyExtractor={this.keyExtractor}
           renderItem={this.renderItem}
