@@ -159,7 +159,7 @@ export default class Cards extends Component {
                             ></TextInput>
                             <TouchableOpacity 
                             style={styleCards.submitComment}
-                            onPress={() => { this.setComments.bind(this); this.setState({showComments:false});}} >
+                            onPress={() => { this.setComments(); this.setState({showComments:false});}} >
                             <Text style={{fontWeight:'bold',textAlign:'center',paddingTop:5,fontSize:16}}>Enviar</Text>
                             </TouchableOpacity>
                         </View>

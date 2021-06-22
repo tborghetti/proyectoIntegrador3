@@ -15,7 +15,8 @@ export default class Screen_ViewImportCards extends Component {
   constructor() {
     super();
     this.state = {
-      importedCards: []
+      importedCards: [],
+      length: 0,
     }
   }
 
@@ -24,7 +25,8 @@ export default class Screen_ViewImportCards extends Component {
       const cardsBrought = await AsyncStorage.getItem('Selected');
       let json = JSON.parse(cardsBrought);
       if(json === null) json = [];
-      this.setState({ importedCards: json });
+      let number= json.length;
+      this.setState({ importedCards: json , length: number});
       console.log(cardsBrought)
     } catch (e) {
       console.log(e);
@@ -32,8 +34,6 @@ export default class Screen_ViewImportCards extends Component {
   }
   
   async delete(idCard){
-    console.log(idCard);
-   //guardar bajo la key 'papelera' y sacar de selected
    let person = this.state.importedCards.filter((item)=>{
     return item.login.uuid !== idCard
   })
@@ -65,19 +65,21 @@ export default class Screen_ViewImportCards extends Component {
         <View style={styleHeader.container}>
             <Text style={styleHeader.title}>Mostramos los valores importados</Text>
         </View>
-        
+        <Text> Cantidad de tarjetas importadas: {this.state.length} </Text>
         <TouchableOpacity style={styleViewCards.recuperarDatos} onPress={this.getData.bind(this)}>
           <FontAwesome name="user" size={15} color="black" ><Text> Recuperar datos</Text></FontAwesome>
         </TouchableOpacity>
         <TouchableOpacity style={styleViewCards.ocultarDatos} onPress={() => this.setState({ importedCards: [] })}>
           <MaterialCommunityIcons name="account-cancel" size={15} color="black" > 
-            <Text>Ocultar datos importados</Text> 
+            <Text> Ocultar datos importados</Text> 
           </MaterialCommunityIcons>
         </TouchableOpacity>
         <TouchableOpacity
-          style = {{backgroundColor: "green"}}
+          style = {styleViewCards.papelera}
           onPress={() => this.props.navigation.navigate('Screen_RecycleBin')}>
-          <Text style={{ fontSize: 15, fontWeight: "bold" }}>Papelera</Text>
+          <FontAwesome name="recycle" size={15} color="black" ><Text> Papelera</Text> 
+          </FontAwesome>
+          
            </TouchableOpacity>
         <FlatList
           style={styleFlatList.flatImport}

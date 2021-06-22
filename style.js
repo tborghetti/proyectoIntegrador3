@@ -230,7 +230,8 @@ const styleApp = StyleSheet.create({
     container:{
       flex: 1,
       backgroundColor: "#363636",
-      justifyContent:'center'
+      justifyContent:'center',
+      alignItems: 'center'
     },
     recuperarDatos:{
       backgroundColor: "#ff7100", 
@@ -238,14 +239,24 @@ const styleApp = StyleSheet.create({
       padding:2, 
       marginTop:30,
       fontSize: 15,
+      alignItems:'center'
     },
     ocultarDatos:{
       backgroundColor: "#ff7100", 
       borderRadius:5, 
       padding:2, 
-      marginTop:30,
+      marginTop: 10,
       fontSize: 15,
+      alignItems:'center',
     },
+    papelera:{
+      backgroundColor: "green", 
+      borderRadius:5, 
+      padding:2, 
+      marginTop: 10,
+      fontSize: 15,
+      alignItems:'center',
+    }
   });
 
   export {styleApp, 
