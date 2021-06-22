@@ -20,31 +20,37 @@ export default class Screen_RecycleBin extends Component {
     }
     async getData() {
         try {
-          const cardsBrought = await AsyncStorage.getItem('RecycleBin');
-          let json = JSON.parse(cardsBrought);
-          if(json === null) json = [];
-          this.setState({ deletedCards: json});
-          console.log(cardsBrought)
+          const cardsBrought = await AsyncStorage.getItem('RecycleBin')
+          let bin = JSON.parse(cardsBrought)
+          if(bin === null) bin = []
+          this.setState({ deletedCards: bin })
+          //console.log(cardsBrought)
         } catch (e) {
           console.log(e);
         }
       }
-    
+  
+  
     delete(){
-        console.log('hola');
+       // console.log('hola');
     }
     
     renderItem = ({item}) => (
-        <Cards DataShown={item} originaldate={item.dob.date} onDelete={this.delete.bind(this)} />
+        //<Cards DataShown={item} originaldate={item.dob.date} onDelete={this.delete.bind(this)} />
+        <View>
+            <Text>hola</Text>
+        </View>
       )
     
     
     keyExtractor = (item, idx) => idx.toString()
 
     render() {
+     //   console.log(this.state.deletedCards)
+        console.log("fin de borradas")
         return (
             <View style={styleFlatList.container}>
-                <TouchableOpacity style={styleViewCards.recuperarDatos} onPress={this.getData()}>
+                <TouchableOpacity style={styleViewCards.recuperarDatos} onPress={this.getData}>
                     <FontAwesome name="user" size={15} color="black" ><Text> Recuperar datos</Text></FontAwesome>
                 </TouchableOpacity>
                 <TouchableOpacity style={styleViewCards.ocultarDatos} onPress={() => this.setState({ deletedCards: [] })}>

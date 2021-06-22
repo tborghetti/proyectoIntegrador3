@@ -14,7 +14,9 @@ export default class Screen_LookUpEdit extends Component {
     render() {
         return (
             <View style={styleFlatList.container}>
-                <Text style={{color: "white", fontWeight: "bold"}}>Somos: Jose, Tizi y Ari :)</Text>
+                
+      
+
             </View>
         )
     }

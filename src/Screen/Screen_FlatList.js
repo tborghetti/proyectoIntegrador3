@@ -82,11 +82,9 @@ export default class Screen_FlatList extends Component {
           style={styleFlatList.inputText}
           placeholder='ADD CARD'
           onChangeText={numero => this.addCard(numero)}
-          keyboardType="numeric"
-        /> 
-        {/* <Touchable
-        onPress={this.addCard.bind(this)}
-        ></Touchable> */}
+          keyboardType="number-pad"
+          // queremos poner un boton tipo enter. ???
+        />
         </View>
 
 

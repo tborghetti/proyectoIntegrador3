@@ -42,20 +42,17 @@ export default class Cards extends Component {
         this.setState({ beautifulDate: beautifulDate })
     }
 
-    async selectedCardStorage(item) {
+    async selectedCardStorage() {
         try {
             let storage = await AsyncStorage.getItem('Selected');
             storage = JSON.parse(storage);
             if(storage === null) storage = [];
             console.log(storage);
-            let data = storage.find(function(ele) {
-                return ele.login.uuid === item.login.uuid;
-            });
-            if (!data){ 
-                storage.push(this.props.DataShown);
+        
+            storage.push(this.props.DataShown);
             const cardValue = JSON.stringify(storage);
             await AsyncStorage.setItem('Selected', cardValue)
-                }
+            // te habilita importar la tarjeta mas de una vez, ???    
             
             
         } catch (error) {
@@ -83,6 +80,7 @@ export default class Cards extends Component {
     async getComments(){
         try{
             const theComments = await AsyncStorage.getItem('Comments');
+            console.log(theComments)
             if(theComments !== null){
                 const jsonParsed= JSON.parse(theComments);
                 this.setState({texto: jsonParsed})
