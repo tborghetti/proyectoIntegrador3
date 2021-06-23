@@ -10,7 +10,8 @@ import {
     Image,
     TouchableOpacity,
     Modal,
-    TextInput
+    TextInput,
+    FlatList
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { AntDesign } from '@expo/vector-icons';
@@ -39,7 +40,8 @@ export default class Cards extends Component {
         let month = new Date(timestamp).getMonth() + 1;
         let year = new Date(timestamp).getFullYear();
         let beautifulDate = day + '/' + month + '/' + year
-        this.setState({ beautifulDate: beautifulDate })
+        this.setState({ beautifulDate: beautifulDate });
+
     }
 
     async selectedCardStorage() {
@@ -47,7 +49,7 @@ export default class Cards extends Component {
             let storage = await AsyncStorage.getItem('Selected');
             storage = JSON.parse(storage);
             if(storage === null) storage = [];
-            console.log(storage);
+           // console.log(storage);
         
             storage.push(this.props.DataShown);
             const cardValue = JSON.stringify(storage);
@@ -66,7 +68,7 @@ export default class Cards extends Component {
             let storage = await AsyncStorage.getItem('Comments');
             storage = JSON.parse(storage);
             if(storage === null) storage = [];
-            console.log(storage);
+            //console.log(storage);
             storage.push(this.state.commentHandler);
             const jsonValue = JSON.stringify(storage)		
             await AsyncStorage.setItem('Comments', jsonValue);
@@ -83,7 +85,8 @@ export default class Cards extends Component {
             console.log(theComments)
             if(theComments !== null){
                 const jsonParsed= JSON.parse(theComments);
-                this.setState({texto: jsonParsed})
+                this.setState({texto: jsonParsed});
+                console.log(jsonParsed)
             }else{
                 console.log('No se encontraron datos')
             }
@@ -92,6 +95,7 @@ export default class Cards extends Component {
         }
     }
 
+   
     
 
     render() {
@@ -155,6 +159,8 @@ export default class Cards extends Component {
                             onChangeText={texto => this.setState({commentHandler: texto})} 
                             
                             ></TextInput>
+                            
+                            <Text style={{backgroundColor:'white', fontSize:20, marginTop:50}}>{this.state.commentHandler}</Text>
                             <TouchableOpacity 
                             style={styleCards.submitComment}
                             onPress={() => { this.setComments(); this.setState({showComments:false});}} >
