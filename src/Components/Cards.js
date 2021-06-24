@@ -12,7 +12,6 @@ import {
     Modal,
     TextInput
 } from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome';
 import { AntDesign } from '@expo/vector-icons';
 
 
@@ -27,12 +26,9 @@ export default class Cards extends Component {
             commentHandler: ''
         }
     }
-    componentDidUpdate(){
-        this.getComments()
-     }
-
+    
     async componentDidMount() {
-        await AsyncStorage.removeItem('Comments');
+       // await AsyncStorage.removeItem('Comments');
         let apiDate = this.props.originaldate;
         let timestamp = new Date(apiDate).getTime(); //Date es una funcion que viene de React
         let day = new Date(timestamp).getDate();
@@ -54,28 +50,14 @@ export default class Cards extends Component {
             await AsyncStorage.setItem('Selected', cardValue)
             // te habilita importar la tarjeta mas de una vez, ???    
             
-            
         } catch (error) {
             console.log(error)
         }
     }
-
-
-    async setComments(){
-        try {
-            let storage = await AsyncStorage.getItem('Comments');
-            storage = JSON.parse(storage);
-            if(storage === null) storage = [];
-            //console.log(storage);
-            storage.push(this.state.commentHandler);
-            const jsonValue = JSON.stringify(storage)		
-            await AsyncStorage.setItem('Comments', jsonValue);
-            console.log('se almaceno: ' + jsonValue);
-        }catch(e){
-            console.log(e);
-        }
-        
-    }
+    
+    componentDidUpdate(){
+      this.getComments()
+      }
     
     async getComments(){
         try{
@@ -91,14 +73,24 @@ export default class Cards extends Component {
             console.log(e);
         }
     }
-
-   
     
+    async setComments(){
+        try {
+            let storage = await AsyncStorage.getItem('Comments');
+            storage = JSON.parse(storage);
+            if(storage === null) storage = [];
+            //console.log(storage);
+            storage.push(this.state.commentHandler);
+            const jsonValue = JSON.stringify(storage)		
+            await AsyncStorage.setItem('Comments', jsonValue);
+            console.log('se almaceno: ' + jsonValue);
+        }catch(e){
+            console.log(e);
+        }
+        
+    }
 
     render() {
-
-    const {texto} = this.state;
-
         return (
             <View style={styleCards.Card}>
             
@@ -169,11 +161,9 @@ export default class Cards extends Component {
                             </TouchableOpacity>
 
                             <Text style={styleModalComments.textTitle}> Comentarios Anteriores: </Text>
-                        
-                            <Text style={styleModalComments.oldComments}> {texto} </Text>
-                        
-                            {/* <Text style={{backgroundColor:'white', fontSize:20, marginTop:50}}>{this.state.commentHandler}</Text> */}
-
+                            <View style={{flex: 1, flexDirection: 'column',alignItems: 'center', justifyContent:'space-between'}}>
+                            <Text style={styleModalComments.oldComments}> {this.state.texto} </Text>
+                            </View>
 
                         </View>
                     </View>

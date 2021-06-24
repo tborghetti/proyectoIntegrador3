@@ -141,19 +141,28 @@ const styleApp = StyleSheet.create({
     },
     ActivityIndicator: {
       flex:1,
-      justifyContent: 'center',
-      alignItems:'center'
+     justifyContent: 'center',
+      alignItems:'center',
     },
     flatImport:{
       
       marginLeft:25
     },
     inputText:{
-      width:100,
-      height:25,
+      width:350,
+      height:40,
       borderRadius:10,
       backgroundColor:'pink',
-      textAlign:'center'
+      textAlign:'center',
+      marginTop: 50,
+    
+    },
+    aboutUs: {
+      backgroundColor: "orange",
+      borderRadius: 3,
+      padding: 5,
+      height: 30,
+
     }
   });
   const styleModal = StyleSheet.create({
@@ -226,10 +235,7 @@ const styleApp = StyleSheet.create({
       
     },
     oldComments:{
-      flexDirection: 'column',
-      alignItems: 'center',
-      justifyContent:'space-between',
-      flex:1,
+      
       color:'white',
       marginTop:50
     }
@@ -264,6 +270,14 @@ const styleApp = StyleSheet.create({
       marginTop: 10,
       fontSize: 15,
       alignItems:'center',
+    },
+    filter: {
+      backgroundColor: "yellow",
+      padding: 5,
+      borderRadius: 5,
+      margin: 7,
+      
+      
     }
   });
 

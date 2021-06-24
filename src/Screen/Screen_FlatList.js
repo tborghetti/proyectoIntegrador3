@@ -61,12 +61,24 @@ export default class Screen_FlatList extends Component {
 
         <View style={styleHeader.container}>
           <Text style={styleHeader.title}>Header</Text>
-          <TouchableOpacity
-          style = {{backgroundColor: "pink"}}
-          onPress={() => this.props.navigation.navigate('Screen_AboutUs')}>
-          <Text style={{ fontSize: 15, fontWeight: "bold" }}>Ir a About Us</Text>
-           </TouchableOpacity>
         </View>
+       
+        <TouchableOpacity
+          style = {styleFlatList.aboutUs}
+          onPress={() => this.props.navigation.navigate('Screen_AboutUs')}>
+          <Text style={{ fontSize: 15, fontWeight: "bold"}}>About Us</Text>
+        </TouchableOpacity>
+
+        <View>
+        <TextInput 
+          style={styleFlatList.inputText}
+          placeholder='How many card do you want to add? Insert number'
+          onChangeText={numero => this.addCard(numero)}
+          keyboardType="number-pad"
+          // queremos poner un boton tipo enter. ???
+        />
+        </View>
+
         <View style={styleFlatList.ActivityIndicator}>
           {
             this.state.activity &&
@@ -74,17 +86,6 @@ export default class Screen_FlatList extends Component {
               size='large'
               color='orange' />
           }
-        </View>
-
-
-        <View>
-        <TextInput 
-          style={styleFlatList.inputText}
-          placeholder='ADD CARD'
-          onChangeText={numero => this.addCard(numero)}
-          keyboardType="number-pad"
-          // queremos poner un boton tipo enter. ???
-        />
         </View>
 
 

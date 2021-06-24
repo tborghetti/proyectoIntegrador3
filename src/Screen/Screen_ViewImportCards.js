@@ -82,13 +82,17 @@ export default class Screen_ViewImportCards extends Component {
         <View style={styleHeader.container}>
           <Text style={styleHeader.title}>Mostramos los valores importados</Text>
         </View>
+
+        <View>
         <TextInput 
-          style = {{backgroundColor: "red"}}
+          style = {styleViewCards.filter}
           placeholder='FILTER'
           onChangeText={filter => this.filterCards(filter)}
           keyboardType="number-pad"
           // queremos poner un boton tipo enter. ???
         />
+        </View>
+
         <Text> Cantidad de tarjetas importadas: {this.state.length} </Text>
         <TouchableOpacity style={styleViewCards.recuperarDatos} onPress={this.getData.bind(this)}>
           <FontAwesome name="user" size={15} color="black" ><Text> Recuperar datos</Text></FontAwesome>
