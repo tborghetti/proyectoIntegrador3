@@ -224,6 +224,14 @@ const styleApp = StyleSheet.create({
       borderRadius:4,
       textAlign:'center'
       
+    },
+    oldComments:{
+      flexDirection: 'column',
+      alignItems: 'center',
+      justifyContent:'space-between',
+      flex:1,
+      color:'white',
+      marginTop:50
     }
   });
   const styleViewCards = StyleSheet.create({

@@ -83,9 +83,9 @@ export default class Cards extends Component {
             if(theComments !== null){
                 const jsonParsed= JSON.parse(theComments);
                 this.setState({texto: jsonParsed});
-                console.log(jsonParsed)
+               // console.log(jsonParsed)
             }else{
-                console.log('No se encontraron datos')
+               // console.log('No se encontraron datos')
             }
         }catch(e){
             console.log(e);
@@ -169,9 +169,9 @@ export default class Cards extends Component {
                             </TouchableOpacity>
 
                             <Text style={styleModalComments.textTitle}> Comentarios Anteriores: </Text>
-
-                            <Text style={{backgroundColor: "red", color: "white", marginTop: 20}}> {texto} </Text>
-
+                        
+                            <Text style={styleModalComments.oldComments}> {texto} </Text>
+                        
                             {/* <Text style={{backgroundColor:'white', fontSize:20, marginTop:50}}>{this.state.commentHandler}</Text> */}
 
 
