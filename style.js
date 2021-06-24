@@ -1,28 +1,22 @@
 import {StyleSheet} from "react-native";
-
-const styleApp = StyleSheet.create({
-    container: {
-      flex: 1,
-      backgroundColor: '#363636',
-      alignItems: 'center',
-      justifyContent: 'center'
-    },
-  });
   
   const styleHeader = StyleSheet.create({
     container:{
       width:'100%',
       padding:15,
       marginTop:0,
-      backgroundColor:'grey',
+      backgroundColor:'#363636',
       justifyContent:'center',
       alignItems:'center',
-      marginBottom:10
+      marginBottom:10,
+      borderColor: 'white',
+      borderWidth: 2,
     },
     title: {
-      color:'white',
+      textAlign: 'center',
+      color:'orange',
       fontWeight:'bold',
-      fontSize:40
+      fontSize:25,
     },
   });
 
@@ -152,7 +146,7 @@ const styleApp = StyleSheet.create({
       width:350,
       height:40,
       borderRadius:10,
-      backgroundColor:'pink',
+      backgroundColor:'white',
       textAlign:'center',
       marginTop: 50,
     
@@ -162,6 +156,7 @@ const styleApp = StyleSheet.create({
       borderRadius: 3,
       padding: 5,
       height: 30,
+      top: 15,
 
     }
   });
@@ -244,8 +239,7 @@ const styleApp = StyleSheet.create({
     container:{
       flex: 1,
       backgroundColor: "#363636",
-      justifyContent:'center',
-      alignItems: 'center'
+      
     },
     recuperarDatos:{
       backgroundColor: "#ff7100", 
@@ -253,7 +247,9 @@ const styleApp = StyleSheet.create({
       padding:2, 
       marginTop:30,
       fontSize: 15,
-      alignItems:'center'
+      alignItems:'center',
+      alignSelf: 'flex-start',
+      left: 15
     },
     ocultarDatos:{
       backgroundColor: "#ff7100", 
@@ -262,27 +258,35 @@ const styleApp = StyleSheet.create({
       marginTop: 10,
       fontSize: 15,
       alignItems:'center',
+      alignSelf: 'flex-start',
+      left: 15
     },
     papelera:{
-      backgroundColor: "green", 
-      borderRadius:5, 
-      padding:2, 
-      marginTop: 10,
-      fontSize: 15,
+      backgroundColor: "green",  
       alignItems:'center',
+      alignSelf: 'flex-start',
+      height: 80, 
+      width: "100%",
+      //position:'absolute',
+      justifyContent: 'center',
+       alignItems: 'center'
     },
     filter: {
-      backgroundColor: "yellow",
+      backgroundColor: "white",
       padding: 5,
       borderRadius: 5,
       margin: 7,
-      
-      
+      alignSelf: 'flex-end'
+    },
+    cantidad: {
+      color: 'white',
+      fontSize: 15,
+      alignSelf: 'flex-start',
+      left: 15
     }
   });
 
-  export {styleApp, 
-    styleHeader, 
+  export {styleHeader, 
     styleCardsContainer, 
     styleCards, 
     styleFlatList,

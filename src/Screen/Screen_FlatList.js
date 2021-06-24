@@ -6,7 +6,8 @@ import {
   Text,
   View,
   Touchable,
-  TextInput
+  TextInput,
+  Image
 } from 'react-native';
 import { styleFlatList, styleHeader } from '../../style';
 import Cards from '../Components/Cards';
@@ -22,13 +23,6 @@ export default class Screen_FlatList extends Component {
     }
   }
 
-  // componentDidMount() {
-  //   fetch('https://randomuser.me/api/?results=0')
-  //     .then((result) => result.json())
-  //     .then((data) => {
-  //       this.setState({ infoCards: data.results, activity: false })
-  //     })
-  // }
 
   delete(idCard) {
     console.log(idCard);
@@ -51,7 +45,6 @@ export default class Screen_FlatList extends Component {
        let info = data.results.concat(this.state.infoCards); //concat:metodo que permite unir dos arrays en uno - guardar eso en una var - pusios primero el data.results para que 
        this.setState({infoCards: info, activity:false})
      })
-    console.log("hello")
    }
 
 
@@ -60,22 +53,22 @@ export default class Screen_FlatList extends Component {
       <View style={styleFlatList.container}>
 
         <View style={styleHeader.container}>
-          <Text style={styleHeader.title}>Header</Text>
+          <Text style={styleHeader.title}>ENCONTRANDO A TU MEDIA NARANJA</Text>
+          {/* <Image style={{ height: 100, width: 100, borderRadius: 50, alignSelf: 'center' }} source={require('')} /> */}
         </View>
-       
-        <TouchableOpacity
-          style = {styleFlatList.aboutUs}
-          onPress={() => this.props.navigation.navigate('Screen_AboutUs')}>
-          <Text style={{ fontSize: 15, fontWeight: "bold"}}>About Us</Text>
-        </TouchableOpacity>
 
         <View>
+        <TouchableOpacity
+          style = {styleFlatList.aboutUs}
+          onPress={() => this.props.navigation.navigate('About Us')}>
+          <Text style={{ fontSize: 15, fontWeight: "bold"}}>About Us</Text>
+        </TouchableOpacity>
+      
         <TextInput 
           style={styleFlatList.inputText}
           placeholder='How many card do you want to add? Insert number'
           onChangeText={numero => this.addCard(numero)}
           keyboardType="number-pad"
-          // queremos poner un boton tipo enter. ???
         />
         </View>
 
@@ -98,7 +91,7 @@ export default class Screen_FlatList extends Component {
 
         <TouchableOpacity
           style={styleFlatList.button}
-          onPress={() => this.props.navigation.navigate('Screen_ViewImportCards')}
+          onPress={() => this.props.navigation.navigate('Imported Cards')}
         >
           <Text style={{ fontSize: 15, fontWeight: "bold" }}>Importar Tarjetas</Text>
         </TouchableOpacity>

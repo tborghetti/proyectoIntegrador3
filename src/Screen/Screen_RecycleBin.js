@@ -12,45 +12,56 @@ import { FontAwesome } from '@expo/vector-icons';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 export default class Screen_RecycleBin extends Component {
-    constructor(props) {
-        super(props);
+    constructor() {
+        super();
         this.state = {
             deletedCards: [],
         }
     }
-    async getData() {
+    async componentDidMount(){
+       // await AsyncStorage.removeItem('RecycleBin')
+    }
+    componentDidUpdate(){
+        console.log(this.state.deletedCards)
+    }
+
+    async getRecycleBin() {
         try {
           const cardsBrought = await AsyncStorage.getItem('RecycleBin')
-          let bin = JSON.parse(cardsBrought)
-          if(bin === null) bin = []
-          this.setState({ deletedCards: bin })
-          //console.log(cardsBrought)
+          
+          let json = JSON.parse(cardsBrought);
+          if( json === null) json = []
+          console.log(json);
+          this.setState({deletedCards: json})
+          
         } catch (e) {
           console.log(e);
         }
       }
   
   
-    delete(){
-       // console.log('hola');
+    async delete(){
+        let people = this.state.importedCards.filter((item) => {
+            return item.login.uuid !== idCard
+          })
+          this.setState({ deletedCards: people })
+          let toJSON = JSON.stringify(people)
+          await AsyncStorage.setItem("RecycleBin", toJSON)
+       
     }
     
     renderItem = ({item}) => (
-        //<Cards DataShown={item} originaldate={item.dob.date} onDelete={this.delete.bind(this)} />
-        <View>
-            <Text>hola</Text>
-        </View>
-      )
-    
-    
+        <Cards DataShown={item} originaldate={item.dob.date} onDelete={this.delete.bind(this)} />
+    )
+       
+
     keyExtractor = (item, idx) => idx.toString()
 
     render() {
-     //   console.log(this.state.deletedCards)
-        console.log("fin de borradas")
+    
         return (
             <View style={styleFlatList.container}>
-                <TouchableOpacity style={styleViewCards.recuperarDatos} onPress={this.getData}>
+                <TouchableOpacity style={styleViewCards.recuperarDatos} onPress={async () => await this.getRecycleBin()}>
                     <FontAwesome name="user" size={15} color="black" ><Text> Recuperar datos</Text></FontAwesome>
                 </TouchableOpacity>
                 <TouchableOpacity style={styleViewCards.ocultarDatos} onPress={() => this.setState({ deletedCards: [] })}>
@@ -59,6 +70,7 @@ export default class Screen_RecycleBin extends Component {
                     </MaterialCommunityIcons>
                 </TouchableOpacity>
                 <FlatList
+                style={styleFlatList.flatImport}
                 data={this.state.deletedCards}
                 keyExtractor={this.keyExtractor}
                 renderItem={this.renderItem}

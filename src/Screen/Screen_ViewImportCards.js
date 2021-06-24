@@ -28,7 +28,7 @@ export default class Screen_ViewImportCards extends Component {
       if (json === null) json = [];
       let number = json.length;
       this.setState({ importedCards: json, length: number });
-      console.log(cardsBrought)
+     // console.log(cardsBrought)
     } catch (e) {
       console.log(e);
     }
@@ -48,7 +48,7 @@ export default class Screen_ViewImportCards extends Component {
       let storage = await AsyncStorage.getItem('RecycleBin');
       storage = JSON.parse(storage);
       if (storage === null) storage = [];
-      storage.push(personBorrada);
+      storage = [...storage, ...personBorrada];
       const jsonValue = JSON.stringify(storage)
       await AsyncStorage.setItem('RecycleBin', jsonValue);
     } catch (e) {
@@ -57,14 +57,15 @@ export default class Screen_ViewImportCards extends Component {
   }
   
   filterCards(filter){
+    let searchInput = filter.toUpperCase() ;
       let lookUp = this.state.importedCards.filter((search)=>{
         let fname = search.name.first.toUpperCase()
         let flastname = search.name.last.toUpperCase()
-        let fage = search.dob.age.toString()
+        let fcity = search.location.city.toUpperCase()
+        let fcountry = search.location.country.toUpperCase()
 
-      return fname.startsWith(filter) || flastname.startsWith(filter) ||  fage.includes(filter) //buscar si incluye el numero y pasar todo a string y poner con el metodo include()
+      return fname.startsWith(searchInput) || flastname.startsWith(searchInput) ||  fcity.startsWith(searchInput) ||  fcountry.startsWith(searchInput) //buscar si incluye el numero y pasar todo a string y poner con el metodo include()
       })
-    console.log(lookUp)
       this.setState({importedCards: lookUp})
   }
   
@@ -82,18 +83,20 @@ export default class Screen_ViewImportCards extends Component {
         <View style={styleHeader.container}>
           <Text style={styleHeader.title}>Mostramos los valores importados</Text>
         </View>
+        
+       
 
         <View>
         <TextInput 
           style = {styleViewCards.filter}
           placeholder='FILTER'
           onChangeText={filter => this.filterCards(filter)}
-          keyboardType="number-pad"
+          keyboardType="default"
           // queremos poner un boton tipo enter. ???
         />
         </View>
 
-        <Text> Cantidad de tarjetas importadas: {this.state.length} </Text>
+        <Text style={styleViewCards.cantidad}> Cantidad de tarjetas importadas: {this.state.length} </Text>
         <TouchableOpacity style={styleViewCards.recuperarDatos} onPress={this.getData.bind(this)}>
           <FontAwesome name="user" size={15} color="black" ><Text> Recuperar datos</Text></FontAwesome>
         </TouchableOpacity>
@@ -102,13 +105,7 @@ export default class Screen_ViewImportCards extends Component {
             <Text> Ocultar datos importados</Text>
           </MaterialCommunityIcons>
         </TouchableOpacity>
-        <TouchableOpacity
-          style={styleViewCards.papelera}
-          onPress={() => this.props.navigation.navigate('Screen_RecycleBin')}>
-          <FontAwesome name="recycle" size={15} color="black" ><Text> Papelera</Text>
-          </FontAwesome>
-
-        </TouchableOpacity>
+        
         <FlatList
           style={styleFlatList.flatImport}
           data={this.state.importedCards}
@@ -117,6 +114,11 @@ export default class Screen_ViewImportCards extends Component {
           numColumns={2}
         />
 
+        <TouchableOpacity
+          style={styleViewCards.papelera}
+          onPress={() => this.props.navigation.navigate('Recycle Bin')}>
+          <FontAwesome name="recycle" size={20} color="black" ><Text style={{ fontWeight: "bold" }}> Papelera</Text> </FontAwesome>
+        </TouchableOpacity>
       </View>
     )
   }

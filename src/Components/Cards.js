@@ -28,7 +28,7 @@ export default class Cards extends Component {
     }
     
     async componentDidMount() {
-       // await AsyncStorage.removeItem('Comments');
+      // await AsyncStorage.removeItem('Comments');
         let apiDate = this.props.originaldate;
         let timestamp = new Date(apiDate).getTime(); //Date es una funcion que viene de React
         let day = new Date(timestamp).getDate();
@@ -61,28 +61,29 @@ export default class Cards extends Component {
     
     async getComments(){
         try{
-            const theComments = await AsyncStorage.getItem('Comments');
-            if(theComments !== null){
-                const jsonParsed= JSON.parse(theComments);
-                this.setState({texto: jsonParsed});
-               // console.log(jsonParsed)
-            }else{
-               // console.log('No se encontraron datos')
-            }
+            const theComments = await AsyncStorage.getItem('Selected');
+            
         }catch(e){
             console.log(e);
         }
     }
     
-    async setComments(){
-        try {
-            let storage = await AsyncStorage.getItem('Comments');
+    async setComments(uuid){
+        try {  
+            let storage = await AsyncStorage.getItem('Selected');
             storage = JSON.parse(storage);
             if(storage === null) storage = [];
             //console.log(storage);
-            storage.push(this.state.commentHandler);
+            storage.map((item) => {
+                if(item.login.uuid === uuid){
+                    if(!item.comments) item.comments = [];
+                    item.comments.push(this.state.commentHandler);
+                    this.setState({texto: item.comments})
+                }
+            })
+
             const jsonValue = JSON.stringify(storage)		
-            await AsyncStorage.setItem('Comments', jsonValue);
+            await AsyncStorage.setItem('Selected', jsonValue);
             console.log('se almaceno: ' + jsonValue);
         }catch(e){
             console.log(e);
@@ -156,7 +157,7 @@ export default class Cards extends Component {
                             
                             <TouchableOpacity 
                             style={styleCards.submitComment}
-                            onPress={() => { this.setComments(); this.setState({showComments:true});}} >
+                            onPress={() => { this.setComments(this.props.DataShown.login.uuid); this.setState({showComments:true});}} >
                             <Text style={{fontWeight:'bold',textAlign:'center',paddingTop:5,fontSize:16}}>Guardar</Text>
                             </TouchableOpacity>
 
