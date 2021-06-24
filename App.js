@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-
 import Screen_ViewImportCards from './src/Screen/Screen_ViewImportCards';
 import Screen_FlatList from './src/Screen/Screen_FlatList';
 import Screen_AboutUs from './src/Screen/Screen_AboutUs';
@@ -21,20 +20,33 @@ export default class App extends Component {
     return (
       <NavigationContainer>
 				<Stack.Navigator> 
-					<Stack.Screen name='Home' component={Screen_FlatList} options={{
-          title: '',
-          headerStyle: {
-            backgroundColor: '#363636',
-          },
-          headerTintColor: '#242323',
-          headerTitleStyle: {
-            fontWeight: 'bold',
-          },
-        }} />
-					<Stack.Screen name='Imported Cards' component={Screen_ViewImportCards} />
-          <Stack.Screen name='About Us' component={Screen_AboutUs} />
-          <Stack.Screen name='Recycle Bin' component={Screen_RecycleBin} />
-				</Stack.Navigator>
+					<Stack.Screen name='Home' component={Screen_FlatList} 
+          options={{
+            title: '',
+            headerStyle: { backgroundColor: '#363636'},
+            headerTintColor: 'white',
+          }} />
+				<Stack.Screen name='Imported Cards' component={Screen_ViewImportCards} 
+          options={{
+            title: '',
+            headerStyle: { backgroundColor: '#363636'},
+            headerTintColor: 'white',
+          }} />
+        <Stack.Screen name='About Us' component={Screen_AboutUs}
+          options={{
+            title: '',
+            headerStyle: { backgroundColor: '#363636'},
+            headerTintColor: 'white',
+          }} />
+        
+        <Stack.Screen name='Recycle Bin' component={Screen_RecycleBin} 
+          options={{
+            title: '',
+            headerStyle: { backgroundColor: '#363636'},
+            headerTintColor: 'white',
+          }} />
+				
+        </Stack.Navigator>
 			</NavigationContainer>
     
     );

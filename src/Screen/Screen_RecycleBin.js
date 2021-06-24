@@ -7,7 +7,7 @@ import {
     TouchableOpacity,
     FlatList
 } from 'react-native';
-import {styleFlatList, styleViewCards } from '../../style';
+import {styleFlatList, styleViewCards, styleHeader } from '../../style';
 import { FontAwesome } from '@expo/vector-icons';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
@@ -28,20 +28,18 @@ export default class Screen_RecycleBin extends Component {
     async getRecycleBin() {
         try {
           const cardsBrought = await AsyncStorage.getItem('RecycleBin')
-          
           let json = JSON.parse(cardsBrought);
           if( json === null) json = []
           console.log(json);
           this.setState({deletedCards: json})
-          
         } catch (e) {
           console.log(e);
         }
       }
   
   
-    async delete(){
-        let people = this.state.importedCards.filter((item) => {
+    async delete(idCard){
+        let people = this.state.deletedCards.filter((item) => {
             return item.login.uuid !== idCard
           })
           this.setState({ deletedCards: people })
@@ -60,7 +58,11 @@ export default class Screen_RecycleBin extends Component {
     render() {
     
         return (
+
             <View style={styleFlatList.container}>
+                <View style={styleHeader.container}>
+                    <Text style={styleHeader.title}> Papelera </Text>
+                </View>
                 <TouchableOpacity style={styleViewCards.recuperarDatos} onPress={async () => await this.getRecycleBin()}>
                     <FontAwesome name="user" size={15} color="black" ><Text> Recuperar datos</Text></FontAwesome>
                 </TouchableOpacity>

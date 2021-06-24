@@ -1,19 +1,22 @@
 import React, { Component } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { styleCards,styleModal } from '../../style';
+import { styleCards,styleModal, styleModalComments} from '../../style';
+import { FontAwesome } from '@expo/vector-icons';
 
+// import MoreDetails from './MoreDetails'
 import {
     Text,
     View,
     Image,
     TouchableOpacity,
     Modal,
+    TextInput,
     Alert
 } from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
 
 
-export default class Cards extends Component {
+export default class CardsViewImport extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -37,20 +40,7 @@ export default class Cards extends Component {
         this.setState({ beautifulDate: beautifulDate });
     }
 
-    async selectedCardStorage() {
-        try {
-            let storage = await AsyncStorage.getItem('Selected');
-            storage = JSON.parse(storage);
-            if(storage === null) storage = [];        
-            storage.push(this.props.DataShown);
-            const cardValue = JSON.stringify(storage);
-            await AsyncStorage.setItem('Selected', cardValue)
     
-            
-        } catch (error) {
-            console.log(error)
-        }
-    }
     alertSelect = () => {
         Alert.alert(
             "Contacto importado",
@@ -96,20 +86,18 @@ export default class Cards extends Component {
         }
         
     }
+    
 
     render() {
         return (
             <View style={styleCards.Card}>
             
-                <TouchableOpacity style={styleCards.Select}
-                    onPress={() => {this.selectedCardStorage(); this.alertSelect() }}>
-                    <AntDesign name="checkcircleo" size={24} color="white" />
-                </TouchableOpacity>
+                
                 <TouchableOpacity style={styleCards.Close}
                    onPress={()=>this.props.onDelete(this.props.DataShown.login.uuid)}>
                     <AntDesign name="closecircleo" size={24} color="white" />
                 </TouchableOpacity>
-                <Image style={{ height: 100, width: 100, borderRadius: 50, alignSelf: 'center' }} source={{ uri: this.props.DataShown.picture.medium }} />
+                <Image style={{ height: 100, width: 100, borderRadius: 50, alignSelf: 'center', marginTop: 30 }} source={{ uri: this.props.DataShown.picture.medium }} />
                 <Text style={styleCards.NameLastName}> {this.props.DataShown.name.last}, {this.props.DataShown.name.first} </Text>
                 <Text style={styleCards.Mail}>{this.props.DataShown.email}</Text>
                 <Text style={styleCards.Birthday}> {this.state.beautifulDate} - ({this.props.DataShown.dob.age})</Text>
@@ -138,7 +126,43 @@ export default class Cards extends Component {
                         </View>
                     </View>
                 </Modal>
+        
+        {/* add comments */}
+                <TouchableOpacity style={styleCards.Comments} >
+                    <FontAwesome name="comments" color="black" size={12} onPress={()=> this.setState({showComments:true})}><Text> Add Comments</Text></FontAwesome>
+                </TouchableOpacity>
+                <Modal visible ={this.state.showComments} 
+                transparent='true'
+                animationType='slide'
+                >
+                    <View style={styleModalComments.container}>
+                        <View style={styleModalComments.modal}>
 
+                            <TouchableOpacity style={styleModal.close}
+                            onPress={()=> this.setState({showComments: false})} >
+                                <AntDesign name="closecircleo" size={24} color="#ff7100" />
+                            </TouchableOpacity>
+                            
+                            
+                            <TextInput style={styleModalComments.TextInput}
+                            placeholder='ADD COMMENT'
+                            onChangeText={texto => this.setState({commentHandler: texto})}
+                            ></TextInput>
+                            
+                            <TouchableOpacity 
+                            style={styleCards.submitComment}
+                            onPress={() => { this.setComments(this.props.DataShown.login.uuid); this.setState({showComments:true});}} >
+                            <Text style={{fontWeight:'bold',textAlign:'center',paddingTop:5,fontSize:16}}>Guardar</Text>
+                            </TouchableOpacity>
+
+                            <Text style={styleModalComments.textTitle}> Comentarios Anteriores: </Text>
+                          
+                            <Text style={styleModalComments.oldComments}> {this.state.texto} </Text>
+                            
+                            
+                        </View>
+                    </View>
+                </Modal>
             </View>
         )
     }

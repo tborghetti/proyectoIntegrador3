@@ -1,21 +1,84 @@
 import React, { Component } from 'react';
 import {
     Text, 
+    TouchableOpacity, 
     View,
+    Animated,
+    Touchable
 } from 'react-native';
-import {styleFlatList} from '../../style';
+import {styleAboutUs, styleFlatList} from '../../style';
 
-export default class Screen_AboutUs extends Component {
+
+
+{/* 
+                <View>
+                <Text style={styleAboutUs.texto}> Somos: Josefina D'Alessandro, Tiziana Borghetti y Ariel Farji :)</Text>
+                <Text style={styleAboutUs.texto}> Nos conocimos en programación 1 y venimos haciendo los proyectos juntos desde ese entones </Text>
+                <Text style={styleAboutUs.texto}>  </Text>
+                </View>
+                <TouchableOpacity><Text> ¿Querés centrarlo no? </Text></TouchableOpacity>
+            </View> */}
+export default class Screen_AboutUs extends Component{
     constructor(props) {
         super(props);
         this.state = {
+            toValue: 1
         }
     }
-    render() {
-        return (
-            <View style={styleFlatList.container}>
-                <Text style={{color: "white", fontWeight: "bold"}}>Somos: Jose, Tizi y Ari :)</Text>
+
+    position = new Animated.Value(0);
+    rotation = new Animated.Value(0);
+
+    topDown = () => {
+        Animated.parallel([
+            Animated.timing(this.position, {
+                toValue: 100,
+                duration: 500,
+                useNativeDriver: true
+            }),
+            // Animated.timing(this.rotation, {
+            //     toValue: this.state.toValue,
+            //     duration: 500,
+            //     useNativeDriver: true
+            // })
+        ]).start();
+    }
+
+    render(){
+        return(
+            <View style={styleAboutUs.container}>
+                    <View style={styleAboutUs.aboutUs}>
+                        <Text style={styleAboutUs.title}> Sobre Nosotros </Text>
+                    </View>
+                    <Text style={styleAboutUs.texto}> Somos: Josefina D'Alessandro, Tiziana Borghetti y Ariel Farji :) {'\n'}
+                        Nos conocimos en programación 1 y venimos haciendo los proyectos juntos desde ese entones </Text>
+                
+                <Animated.View style={{
+                    width: '87%',
+                    height: 170,
+                    backfaceVisibility: 'false',
+                    justifyContent: 'center',
+                    borderWidth: 3,
+                    borderColor: 'orange',
+                    alignItems: 'center',           
+                    transform: [
+                        {translateY: this.position},
+                    ]
+                }}> 
+                    <Text style={styleAboutUs.animatedTexto}> En esta aplicación los usuarios podrán seleccionar la cantidad de tarjetas deseadas, importarlas y ver detalles sobre cada una de ellas. En el caso que no quieran visualizar una tarjeta la podrán eliminar 
+                        y en caso que se arrepientan podrán recuperarla en la papelera de reciclaje.
+                        Además, dentro de las tarjetas importadas encontraran un filtro para mejorar la búsqueda. 
+                    </Text>
+              
+                </Animated.View>
+                
+               
+                <TouchableOpacity style={styleAboutUs.button} onPress={this.topDown}>
+                    <Text style={{ fontSize: 15, fontWeight: "bold" }}> Ordenar Texto</Text>
+                </TouchableOpacity>
+
             </View>
+           
         )
     }
 }

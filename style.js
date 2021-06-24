@@ -18,6 +18,7 @@ import {StyleSheet} from "react-native";
       fontWeight:'bold',
       fontSize:25,
     },
+    
   });
 
   const styleCardsContainer = StyleSheet.create({
@@ -36,7 +37,7 @@ import {StyleSheet} from "react-native";
       textAlign: 'center',
     },
     filter:{
-      width: 75,
+      width: '75%',
       borderWidth: 2,
       borderStyle: 'solid',
       borderRadius: 5, 
@@ -139,11 +140,10 @@ import {StyleSheet} from "react-native";
       alignItems:'center',
     },
     flatImport:{
-      
-      marginLeft:25
+      alignSelf: 'center'
     },
     inputText:{
-      width:350,
+      width: 300,
       height:40,
       borderRadius:10,
       backgroundColor:'white',
@@ -157,9 +157,69 @@ import {StyleSheet} from "react-native";
       padding: 5,
       height: 30,
       top: 15,
-
+      width: '40%',
+      alignSelf: 'center'
     }
   });
+ const styleAboutUs = StyleSheet.create({
+  container:{
+    
+    
+    backgroundColor: "#363636",
+    flex: 1,
+    alignItems: 'center',
+    
+
+  },
+  aboutUs:{
+    width:'100%',
+    padding:15,
+    top: 0,
+    backgroundColor:'#363636',
+    justifyContent:'center',
+    alignItems:'center',
+    marginBottom:10,
+    borderColor: 'white',
+    borderWidth: 2,
+  },
+  title: {
+    textAlign: 'center',
+    color:'orange',
+    fontWeight:'bold',
+    fontSize:25,
+  },
+  texto:{
+    color: "white", 
+    fontWeight: "bold",
+    top: 30,
+    bottom: 30,
+    padding: 3,
+  },
+  button: {
+    backgroundColor: "orange",  
+    alignItems:'center',
+    marginTop: "80%",
+    padding: 15,
+    width: "50%",
+      //position:'absolute',
+    justifyContent: 'center',
+    alignSelf: 'center',
+    marginTop: 200,
+    borderRadius: 15
+  },
+  buttonText:{
+    color: "white", 
+    fontWeight: "bold",
+    
+  },
+  animatedTexto:{
+    color: "white", 
+    fontWeight: "bold",
+    padding: 2
+  }
+
+ })
+
   const styleModal = StyleSheet.create({
     container:{
         flex:1,
@@ -230,9 +290,11 @@ import {StyleSheet} from "react-native";
       
     },
     oldComments:{
-      
+      padding: 30,
       color:'white',
-      marginTop:50
+      marginTop:50,
+      textAlign:'center',
+      width: '100%'
     }
   });
   const styleViewCards = StyleSheet.create({
@@ -276,7 +338,9 @@ import {StyleSheet} from "react-native";
       padding: 5,
       borderRadius: 5,
       margin: 7,
-      alignSelf: 'flex-end'
+      alignSelf: 'flex-end',
+      width: '20%',
+      textAlign: 'center'
     },
     cantidad: {
       color: 'white',
@@ -292,4 +356,5 @@ import {StyleSheet} from "react-native";
     styleFlatList,
     styleModal, 
     styleModalComments,
+    styleAboutUs,
     styleViewCards}

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import Cards from '../Components/Cards';
+import CardsViewImport from '../Components/CardsViewImport';
 import {
   Text,
   View,
@@ -71,7 +71,7 @@ export default class Screen_ViewImportCards extends Component {
   
   
   renderItem = ({ item }) => (
-    <Cards DataShown={item} originaldate={item.dob.date} onDelete={this.delete.bind(this)} />
+    <CardsViewImport DataShown={item} originaldate={item.dob.date} onDelete={this.delete.bind(this)} />
   )
 
 
@@ -81,7 +81,7 @@ export default class Screen_ViewImportCards extends Component {
     return (
       <View style={styleViewCards.container}>
         <View style={styleHeader.container}>
-          <Text style={styleHeader.title}>Mostramos los valores importados</Text>
+          <Text style={styleHeader.title}> Tarjetas Importadas </Text>
         </View>
         
        
@@ -98,7 +98,7 @@ export default class Screen_ViewImportCards extends Component {
 
         <Text style={styleViewCards.cantidad}> Cantidad de tarjetas importadas: {this.state.length} </Text>
         <TouchableOpacity style={styleViewCards.recuperarDatos} onPress={this.getData.bind(this)}>
-          <FontAwesome name="user" size={15} color="black" ><Text> Recuperar datos</Text></FontAwesome>
+          <FontAwesome name="user" size={15} color="black"><Text> Recuperar datos</Text></FontAwesome>
         </TouchableOpacity>
         <TouchableOpacity style={styleViewCards.ocultarDatos} onPress={() => this.setState({ importedCards: [] })}>
           <MaterialCommunityIcons name="account-cancel" size={15} color="black" >

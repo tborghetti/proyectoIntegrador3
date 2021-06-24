@@ -61,12 +61,12 @@ export default class Screen_FlatList extends Component {
         <TouchableOpacity
           style = {styleFlatList.aboutUs}
           onPress={() => this.props.navigation.navigate('About Us')}>
-          <Text style={{ fontSize: 15, fontWeight: "bold"}}>About Us</Text>
+          <Text style={{ fontSize: 15, fontWeight: "bold"}}>Sobre Nosotros</Text>
         </TouchableOpacity>
-      
+
         <TextInput 
           style={styleFlatList.inputText}
-          placeholder='How many card do you want to add? Insert number'
+          placeholder='Ingresar cantidad de tarjetas a visualizar'
           onChangeText={numero => this.addCard(numero)}
           keyboardType="number-pad"
         />
