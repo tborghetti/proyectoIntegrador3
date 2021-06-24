@@ -115,7 +115,7 @@ const styleApp = StyleSheet.create({
       width:100,
       height:30,
       backgroundColor:'orange',
-      marginTop:500,
+      marginTop:50,
       borderRadius:10
     }
   });
