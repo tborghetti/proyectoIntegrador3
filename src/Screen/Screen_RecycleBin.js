@@ -18,9 +18,7 @@ export default class Screen_RecycleBin extends Component {
             deletedCards: [],
         }
     }
-    async componentDidMount(){
-       // await AsyncStorage.removeItem('RecycleBin')
-    }
+  
     componentDidUpdate(){
         console.log(this.state.deletedCards)
     }

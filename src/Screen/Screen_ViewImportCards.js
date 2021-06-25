@@ -28,7 +28,6 @@ export default class Screen_ViewImportCards extends Component {
       if (json === null) json = [];
       let number = json.length;
       this.setState({ importedCards: json, length: number });
-     // console.log(cardsBrought)
     } catch (e) {
       console.log(e);
     }

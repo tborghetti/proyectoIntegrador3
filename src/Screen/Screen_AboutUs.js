@@ -4,7 +4,7 @@ import {
     TouchableOpacity, 
     View,
     Animated,
-    Touchable
+    
 } from 'react-native';
 import {styleAboutUs} from '../../style';
 

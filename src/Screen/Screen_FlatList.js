@@ -5,9 +5,7 @@ import {
   FlatList,
   Text,
   View,
-  Touchable,
   TextInput,
-  Image
 } from 'react-native';
 import { styleFlatList, styleHeader } from '../../style';
 import Cards from '../Components/Cards';

@@ -17,7 +17,6 @@ export default class Cards extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            ArraySelectedCards: [],
             showModal: false,
             showComments: false,
             texto:[],
@@ -27,7 +26,6 @@ export default class Cards extends Component {
     }
     
     async componentDidMount() {
-      // await AsyncStorage.removeItem('Comments');
         let apiDate = this.props.originaldate;
         let timestamp = new Date(apiDate).getTime(); //Date es una funcion que viene de React
         let day = new Date(timestamp).getDate();
@@ -45,7 +43,7 @@ export default class Cards extends Component {
             storage.push(this.props.DataShown);
             const cardValue = JSON.stringify(storage);
             await AsyncStorage.setItem('Selected', cardValue)
-    
+            this.alertSelect()
             
         } catch (error) {
             console.log(error)
@@ -67,7 +65,7 @@ export default class Cards extends Component {
             <View style={styleCards.Card}>
             
                 <TouchableOpacity style={styleCards.Select}
-                    onPress={() => {this.selectedCardStorage(); this.alertSelect() }}>
+                    onPress={() => {this.selectedCardStorage()}}>
                     <AntDesign name="checkcircleo" size={24} color="white" />
                 </TouchableOpacity>
                 <TouchableOpacity style={styleCards.Close}
