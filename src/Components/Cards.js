@@ -61,41 +61,6 @@ export default class Cards extends Component {
           );
     }
 
-    componentDidUpdate(){
-      this.getComments()
-      }
-    
-    async getComments(){
-        try{
-            const theComments = await AsyncStorage.getItem('Selected');
-            
-        }catch(e){
-            console.log(e);
-        }
-    }
-    
-    async setComments(uuid){
-        try {  
-            let storage = await AsyncStorage.getItem('Selected');
-            storage = JSON.parse(storage);
-            if(storage === null) storage = [];
-            //console.log(storage);
-            storage.map((item) => {
-                if(item.login.uuid === uuid){
-                    if(!item.comments) item.comments = [];
-                    item.comments.push(this.state.commentHandler);
-                    this.setState({texto: item.comments})
-                }
-            })
-
-            const jsonValue = JSON.stringify(storage)		
-            await AsyncStorage.setItem('Selected', jsonValue);
-            console.log('se almaceno: ' + jsonValue);
-        }catch(e){
-            console.log(e);
-        }
-        
-    }
 
     render() {
         return (

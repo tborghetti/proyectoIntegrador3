@@ -92,7 +92,7 @@ export default class Screen_ViewImportCards extends Component {
           placeholder='FILTER'
           onChangeText={filter => this.filterCards(filter)}
           keyboardType="default"
-          // queremos poner un boton tipo enter. ???
+          
         />
         </View>
 

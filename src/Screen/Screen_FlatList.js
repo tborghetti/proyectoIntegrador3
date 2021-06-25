@@ -54,7 +54,6 @@ export default class Screen_FlatList extends Component {
 
         <View style={styleHeader.container}>
           <Text style={styleHeader.title}>ENCONTRANDO A TU MEDIA NARANJA</Text>
-          {/* <Image style={{ height: 100, width: 100, borderRadius: 50, alignSelf: 'center' }} source={require('')} /> */}
         </View>
 
         <View>

@@ -6,18 +6,8 @@ import {
     Animated,
     Touchable
 } from 'react-native';
-import {styleAboutUs, styleFlatList} from '../../style';
+import {styleAboutUs} from '../../style';
 
-
-
-{/* 
-                <View>
-                <Text style={styleAboutUs.texto}> Somos: Josefina D'Alessandro, Tiziana Borghetti y Ariel Farji :)</Text>
-                <Text style={styleAboutUs.texto}> Nos conocimos en programación 1 y venimos haciendo los proyectos juntos desde ese entones </Text>
-                <Text style={styleAboutUs.texto}>  </Text>
-                </View>
-                <TouchableOpacity><Text> ¿Querés centrarlo no? </Text></TouchableOpacity>
-            </View> */}
 export default class Screen_AboutUs extends Component{
     constructor(props) {
         super(props);
@@ -36,11 +26,6 @@ export default class Screen_AboutUs extends Component{
                 duration: 500,
                 useNativeDriver: true
             }),
-            // Animated.timing(this.rotation, {
-            //     toValue: this.state.toValue,
-            //     duration: 500,
-            //     useNativeDriver: true
-            // })
         ]).start();
     }
 

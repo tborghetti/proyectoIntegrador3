@@ -3,15 +3,14 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { styleCards,styleModal, styleModalComments} from '../../style';
 import { FontAwesome } from '@expo/vector-icons';
 
-// import MoreDetails from './MoreDetails'
+
 import {
     Text,
     View,
     Image,
     TouchableOpacity,
     Modal,
-    TextInput,
-    Alert
+    TextInput
 } from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
 
@@ -20,7 +19,6 @@ export default class CardsViewImport extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            ArraySelectedCards: [],
             showModal: false,
             showComments: false,
             texto:[],
@@ -30,7 +28,6 @@ export default class CardsViewImport extends Component {
     }
     
     async componentDidMount() {
-      // await AsyncStorage.removeItem('Comments');
         let apiDate = this.props.originaldate;
         let timestamp = new Date(apiDate).getTime(); //Date es una funcion que viene de React
         let day = new Date(timestamp).getDate();
@@ -39,37 +36,13 @@ export default class CardsViewImport extends Component {
         let beautifulDate = day + '/' + month + '/' + year
         this.setState({ beautifulDate: beautifulDate });
     }
-
-    
-    alertSelect = () => {
-        Alert.alert(
-            "Contacto importado",
-            "Se ha guardado correctamente",
-            [
-              { text: "OK", onPress: () => console.log("OK Pressed") }
-            ]
-          );
-    }
-
-    componentDidUpdate(){
-      this.getComments()
-      }
-    
-    async getComments(){
-        try{
-            const theComments = await AsyncStorage.getItem('Selected');
-            
-        }catch(e){
-            console.log(e);
-        }
-    }
-    
-    async setComments(uuid){
+       
+     async setComments(uuid){
         try {  
             let storage = await AsyncStorage.getItem('Selected');
             storage = JSON.parse(storage);
             if(storage === null) storage = [];
-            //console.log(storage);
+            
             storage.map((item) => {
                 if(item.login.uuid === uuid){
                     if(!item.comments) item.comments = [];
